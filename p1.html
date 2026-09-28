@@ -1,0 +1,991 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ABC College of Technology</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            color: #222;
+            line-height: 1.6;
+        }
+
+        /* HEADER */
+
+        header {
+            background: linear-gradient(135deg, #0056b3, #007bff);
+            color: white;
+            padding: 35px 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 38px;
+            margin-bottom: 8px;
+        }
+
+        header p {
+            font-size: 18px;
+        }
+
+        #greetingMessage {
+            margin-top: 15px;
+            color: white;
+            font-size: 17px;
+        }
+
+        /* NAVIGATION */
+
+        nav {
+            background: #ffffff;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #0056b3;
+            font-weight: bold;
+            margin: 0 15px;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #ff6600;
+        }
+
+        /* MAIN CONTAINER */
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 35px auto;
+        }
+
+        /* HERO */
+
+        .hero {
+            background: white;
+            padding: 35px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+        }
+
+        .hero h2 {
+            color: #0056b3;
+            margin-bottom: 12px;
+        }
+
+        .hero p {
+            color: #555;
+        }
+
+        /* SECTION */
+
+        section {
+            background: white;
+            padding: 30px;
+            margin-bottom: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.06);
+        }
+
+        section h2 {
+            color: #0056b3;
+            margin-bottom: 15px;
+        }
+
+        /* BUTTON */
+
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 11px 18px;
+            border-radius: 7px;
+            cursor: pointer;
+            font-size: 15px;
+            margin: 5px;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #0056b3;
+            transform: translateY(-2px);
+        }
+
+        /* FACILITY */
+
+        .hidden-details {
+            display: none;
+            margin-top: 15px;
+            background: #eef6ff;
+            padding: 18px;
+            border-left: 4px solid #007bff;
+            border-radius: 6px;
+        }
+
+        /* DEPARTMENT */
+
+        .department-buttons {
+            margin: 15px 0;
+        }
+
+        .department-box {
+            margin-top: 20px;
+            padding: 20px;
+            border: 1px solid #d9e2ec;
+            border-radius: 10px;
+            background: #f8fbff;
+        }
+
+        .department-box h3 {
+            color: #007bff;
+            margin-bottom: 8px;
+        }
+
+        /* COURSES */
+
+        .course-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+        }
+
+        .course-card {
+            padding: 20px;
+            background: #f8fbff;
+            border: 1px solid #dce8f5;
+            border-radius: 10px;
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .course-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        .course-card h3 {
+            color: #0056b3;
+            margin-bottom: 8px;
+        }
+
+        /* FORMS */
+
+        label {
+            font-weight: bold;
+        }
+
+        input,
+        select {
+            width: 100%;
+            max-width: 500px;
+            padding: 11px;
+            margin-top: 6px;
+            border: 1px solid #bbb;
+            border-radius: 6px;
+            font-size: 15px;
+        }
+
+        input:focus,
+        select:focus {
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0 0 5px rgba(0,123,255,0.2);
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        /* FEE */
+
+        .fee-result {
+            margin-top: 20px;
+            background: #eaf7ee;
+            padding: 18px;
+            border-radius: 8px;
+            border-left: 4px solid #28a745;
+        }
+
+        #totalFee {
+            color: #168b36;
+            font-size: 24px;
+        }
+
+        /* STATUS */
+
+        .error {
+            color: #d93025;
+            font-weight: bold;
+        }
+
+        .success {
+            color: #168b36;
+            font-weight: bold;
+        }
+
+        #formStatus {
+            margin-top: 15px;
+        }
+
+        /* NEWS */
+
+        .news-list li {
+            margin: 10px 0;
+            padding: 10px;
+            background: #f8fbff;
+            border-left: 4px solid #007bff;
+            list-style-position: inside;
+        }
+
+        /* FOOTER */
+
+        footer {
+            background: #062b55;
+            color: white;
+            text-align: center;
+            padding: 25px;
+            margin-top: 40px;
+        }
+
+        footer p {
+            margin: 5px;
+        }
+
+        /* RESPONSIVE */
+
+        @media (max-width: 800px) {
+
+            header h1 {
+                font-size: 28px;
+            }
+
+            nav a {
+                display: inline-block;
+                margin: 6px 8px;
+            }
+
+            .course-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 500px) {
+
+            .container {
+                width: 94%;
+            }
+
+            section,
+            .hero {
+                padding: 20px;
+            }
+
+            .course-container {
+                grid-template-columns: 1fr;
+            }
+
+            nav a {
+                display: block;
+                margin: 8px;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+
+    <header>
+
+        <h1>ABC College of Technology</h1>
+
+        <p>Knowledge | Innovation | Excellence</p>
+
+        <!-- Task 2: Dynamic Greeting -->
+
+        <h3 id="greetingMessage"></h3>
+
+    </header>
+
+
+    <!-- NAVIGATION -->
+
+    <nav>
+
+        <a href="#home">Home</a>
+        <a href="#courses">Courses</a>
+        <a href="#departments">Departments</a>
+        <a href="#fees">Fee Calculator</a>
+        <a href="#admission">Admission</a>
+
+    </nav>
+
+
+    <main class="container">
+
+        <!-- HOME -->
+
+        <div class="hero" id="home">
+
+            <h2>Welcome to ABC College</h2>
+
+            <p>
+                ABC College of Technology is a leading institution
+                providing quality education in Computer Science,
+                Information Technology and Management.
+            </p>
+
+            <p>
+                Our aim is to provide students with practical knowledge,
+                modern technology skills and professional development.
+            </p>
+
+        </div>
+
+
+        <!-- TASK 4: SHOW / HIDE -->
+
+        <section>
+
+            <h2>Campus Facilities</h2>
+
+            <p>
+                We offer industry-oriented technical and professional
+                programs with modern campus facilities.
+            </p>
+
+            <button onclick="toggleDetails()">
+                Read More About Campus Facilities
+            </button>
+
+            <div id="facilityDetails" class="hidden-details">
+
+                <p>
+                    Our campus includes state-of-the-art computer labs,
+                    high-speed Wi-Fi, a central digital library,
+                    advanced research centers and sports complex facilities.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- TASK 5: DYNAMIC DEPARTMENT -->
+
+        <section id="departments">
+
+            <h2>Featured Departments</h2>
+
+            <p>
+                Click a department below to explore its area of study.
+            </p>
+
+            <div class="department-buttons">
+
+                <button onclick="showDepartment(
+                    'Computer Science',
+                    'Focuses on Software Engineering, AI and Cloud Computing.'
+                )">
+                    Computer Science
+                </button>
+
+                <button onclick="showDepartment(
+                    'Information Technology',
+                    'Focuses on Cybersecurity, Networking and Data Science.'
+                )">
+                    Information Technology
+                </button>
+
+                <button onclick="showDepartment(
+                    'Management',
+                    'Focuses on Business Analytics, Finance and Marketing.'
+                )">
+                    Management
+                </button>
+
+            </div>
+
+
+            <div class="department-box">
+
+                <h3 id="deptTitle">
+                    Computer Science
+                </h3>
+
+                <p id="deptInfo">
+                    Focuses on Software Engineering, AI and Cloud Computing.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- COURSES -->
+
+        <section id="courses">
+
+            <h2>Our Courses</h2>
+
+            <div class="course-container">
+
+                <div class="course-card">
+
+                    <h3>BCA</h3>
+
+                    <p>
+                        Bachelor of Computer Applications
+                    </p>
+
+                </div>
+
+
+                <div class="course-card">
+
+                    <h3>MCA</h3>
+
+                    <p>
+                        Master of Computer Applications
+                    </p>
+
+                </div>
+
+
+                <div class="course-card">
+
+                    <h3>B.Tech</h3>
+
+                    <p>
+                        B.Tech Computer Science
+                    </p>
+
+                </div>
+
+
+                <div class="course-card">
+
+                    <h3>M.Tech</h3>
+
+                    <p>
+                        M.Tech Computer Science
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- TASK 3: FEE CALCULATOR -->
+
+        <section id="fees">
+
+            <h2>Course Fee Calculator</h2>
+
+            <div class="form-group">
+
+                <label>
+                    Select Program:
+                </label>
+
+                <select id="courseSelect" onchange="calculateFee()">
+
+                    <option value="0">
+                        -- Select Course --
+                    </option>
+
+                    <option value="45000">
+                        BCA - ₹45,000 / sem
+                    </option>
+
+                    <option value="55000">
+                        MCA - ₹55,000 / sem
+                    </option>
+
+                    <option value="65000">
+                        B.Tech - ₹65,000 / sem
+                    </option>
+
+                    <option value="75000">
+                        M.Tech - ₹75,000 / sem
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Number of Semesters:
+                </label>
+
+                <input
+                    type="number"
+                    id="semCount"
+                    min="1"
+                    max="8"
+                    value="1"
+                    oninput="calculateFee()"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+
+                    <input
+                        type="checkbox"
+                        id="hostelFee"
+                        onchange="calculateFee()"
+                        style="width:auto;"
+                    >
+
+                    Include Hostel Facility
+                    (₹20,000 / semester)
+
+                </label>
+
+            </div>
+
+
+            <div class="fee-result">
+
+                <h3>
+                    Total Payable Fee:
+                    ₹<span id="totalFee">0</span>
+                </h3>
+
+            </div>
+
+        </section>
+
+
+        <!-- TASK 1: FORM VALIDATION -->
+
+        <section id="admission">
+
+            <h2>Online Admission Form</h2>
+
+            <p>
+                Fill in the details below to submit your admission application.
+            </p>
+
+            <br>
+
+
+            <form id="admissionForm">
+
+
+                <div class="form-group">
+
+                    <label>
+                        Full Name:
+                    </label>
+
+                    <input
+                        type="text"
+                        id="studentName"
+                        placeholder="Enter your full name"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Email Address:
+                    </label>
+
+                    <input
+                        type="text"
+                        id="studentEmail"
+                        placeholder="example@gmail.com"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Mobile Number:
+                    </label>
+
+                    <input
+                        type="text"
+                        id="studentMobile"
+                        placeholder="Enter 10 digit mobile number"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Age:
+                    </label>
+
+                    <input
+                        type="number"
+                        id="studentAge"
+                        placeholder="Enter your age"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Course Applied For:
+                    </label>
+
+                    <select id="appliedCourse">
+
+                        <option value="">
+                            -- Select Course --
+                        </option>
+
+                        <option value="BCA">
+                            BCA
+                        </option>
+
+                        <option value="MCA">
+                            MCA
+                        </option>
+
+                        <option value="BTech">
+                            B.Tech
+                        </option>
+
+                        <option value="MTech">
+                            M.Tech
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <button type="submit">
+                    Submit Application
+                </button>
+
+            </form>
+
+
+            <p id="formStatus"></p>
+
+        </section>
+
+
+        <!-- NEWS -->
+
+        <section>
+
+            <h2>Latest News</h2>
+
+            <ol class="news-list">
+
+                <li>
+                    Admission open for 2026-27
+                </li>
+
+                <li>
+                    Annual Technical Fest will be held in September
+                </li>
+
+                <li>
+                    Registration open for Internship Program
+                </li>
+
+            </ol>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <p>
+            © 2026 ABC College of Technology
+        </p>
+
+        <p>
+            Knowledge | Innovation | Excellence
+        </p>
+
+    </footer>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script>
+
+        /* =========================================
+           TASK 2: DYNAMIC GREETING
+        ========================================= */
+
+        window.onload = function () {
+
+            let hour = new Date().getHours();
+
+            let greeting = "";
+
+            if (hour < 12) {
+
+                greeting =
+                    "Good Morning! Welcome to ABC College of Technology.";
+
+            }
+
+            else if (hour < 18) {
+
+                greeting =
+                    "Good Afternoon! Welcome to ABC College of Technology.";
+
+            }
+
+            else {
+
+                greeting =
+                    "Good Evening! Welcome to ABC College of Technology.";
+
+            }
+
+            document.getElementById("greetingMessage").innerText = greeting;
+
+        };
+
+
+        /* =========================================
+           TASK 4: SHOW / HIDE CONTENT
+        ========================================= */
+
+        function toggleDetails() {
+
+            let details =
+                document.getElementById("facilityDetails");
+
+            if (details.style.display === "block") {
+
+                details.style.display = "none";
+
+            }
+
+            else {
+
+                details.style.display = "block";
+
+            }
+
+        }
+
+
+        /* =========================================
+           TASK 5: DYNAMIC DEPARTMENT CONTENT
+        ========================================= */
+
+        function showDepartment(name, desc) {
+
+            document.getElementById("deptTitle").innerText = name;
+
+            document.getElementById("deptInfo").innerText = desc;
+
+        }
+
+
+        /* =========================================
+           TASK 3: DYNAMIC FEE CALCULATION
+        ========================================= */
+
+        function calculateFee() {
+
+            let baseFee =
+                parseInt(
+                    document.getElementById("courseSelect").value
+                ) || 0;
+
+            let semesters =
+                parseInt(
+                    document.getElementById("semCount").value
+                ) || 0;
+
+            let hostel =
+                document.getElementById("hostelFee").checked
+                ? 20000
+                : 0;
+
+            let total =
+                (baseFee + hostel) * semesters;
+
+            document.getElementById("totalFee").innerText =
+                total.toLocaleString("en-IN");
+
+        }
+
+
+        /* =========================================
+           TASK 1: FORM VALIDATION
+        ========================================= */
+
+        document
+            .getElementById("admissionForm")
+            .addEventListener("submit", function (event) {
+
+                event.preventDefault();
+
+                let name =
+                    document
+                    .getElementById("studentName")
+                    .value
+                    .trim();
+
+                let email =
+                    document
+                    .getElementById("studentEmail")
+                    .value
+                    .trim();
+
+                let mobile =
+                    document
+                    .getElementById("studentMobile")
+                    .value
+                    .trim();
+
+                let age =
+                    document
+                    .getElementById("studentAge")
+                    .value
+                    .trim();
+
+                let course =
+                    document
+                    .getElementById("appliedCourse")
+                    .value;
+
+                let status =
+                    document.getElementById("formStatus");
+
+
+                /* NAME VALIDATION */
+
+                if (name === "") {
+
+                    status.innerHTML =
+                        "<span class='error'>Please enter your full name.</span>";
+
+                    return;
+
+                }
+
+
+                /* EMAIL VALIDATION */
+
+                if (
+                    !email.includes("@") ||
+                    !email.includes(".")
+                ) {
+
+                    status.innerHTML =
+                        "<span class='error'>Please enter a valid email address.</span>";
+
+                    return;
+
+                }
+
+
+                /* MOBILE VALIDATION */
+
+                if (
+                    mobile.length !== 10 ||
+                    isNaN(mobile)
+                ) {
+
+                    status.innerHTML =
+                        "<span class='error'>Mobile number must be exactly 10 digits.</span>";
+
+                    return;
+
+                }
+
+
+                /* AGE VALIDATION */
+
+                if (
+                    age < 16 ||
+                    age > 40 ||
+                    isNaN(age)
+                ) {
+
+                    status.innerHTML =
+                        "<span class='error'>Age must be between 16 and 40.</span>";
+
+                    return;
+
+                }
+
+
+                /* COURSE VALIDATION */
+
+                if (course === "") {
+
+                    status.innerHTML =
+                        "<span class='error'>Please select a course.</span>";
+
+                    return;
+
+                }
+
+
+                /* SUCCESS */
+
+                status.innerHTML =
+                    "<span class='success'>✓ Admission Application Submitted Successfully!</span>";
+
+            });
+
+    </script>
+
+</body>
+
+</html>
+```

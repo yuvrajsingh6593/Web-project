@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>ABC Online Book Store</title>
+
+```
+<style>
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        font-family: Arial, sans-serif;
+        background: #f5f7f6;
+        color: #333;
+        line-height: 1.6;
+    }
+
+    header {
+        background: linear-gradient(135deg, #385723, #6b8e23);
+        color: white;
+        padding: 30px 20px;
+        text-align: center;
+    }
+
+    header h1 {
+        font-size: 36px;
+        margin-bottom: 8px;
+    }
+
+    header p {
+        font-size: 17px;
+    }
+
+    nav {
+        background: #263d19;
+        padding: 14px;
+        text-align: center;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+    }
+
+    nav a {
+        color: white;
+        text-decoration: none;
+        margin: 0 18px;
+        font-weight: bold;
+    }
+
+    nav a:hover {
+        color: #d9f2c4;
+    }
+
+    .container {
+        width: 90%;
+        max-width: 1100px;
+        margin: auto;
+    }
+
+    .hero {
+        background: white;
+        margin-top: 25px;
+        padding: 35px;
+        border-radius: 12px;
+        text-align: center;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    .hero h2 {
+        color: #385723;
+        margin-bottom: 10px;
+    }
+
+    #bookGreeting {
+        margin-top: 15px;
+        color: #385723;
+    }
+
+    section {
+        background: white;
+        margin: 25px 0;
+        padding: 25px;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.07);
+    }
+
+    section h2 {
+        color: #385723;
+        margin-bottom: 15px;
+        border-left: 5px solid #6b8e23;
+        padding-left: 10px;
+    }
+
+    .offer-box {
+        background: #eef7e8;
+        padding: 20px;
+        border-radius: 10px;
+        border: 1px solid #b7d39f;
+    }
+
+    .hidden-offer {
+        display: none;
+        background: #e2f0d9;
+        padding: 15px;
+        margin-top: 15px;
+        border: 1px solid #385723;
+        border-radius: 8px;
+    }
+
+    button {
+        background: #385723;
+        color: white;
+        border: none;
+        padding: 11px 18px;
+        margin: 5px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+    button:hover {
+        background: #263d19;
+    }
+
+    .book-buttons {
+        margin-bottom: 20px;
+    }
+
+    .featured-book {
+        background: #f7faf5;
+        border: 1px solid #cbdcbe;
+        padding: 20px;
+        border-radius: 10px;
+    }
+
+    .featured-book h3 {
+        color: #385723;
+        margin-bottom: 8px;
+    }
+
+    .categories {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 15px;
+        list-style: none;
+    }
+
+    .categories li {
+        background: #eef7e8;
+        padding: 15px;
+        text-align: center;
+        border-radius: 8px;
+        border: 1px solid #d1e2c7;
+        font-weight: bold;
+        color: #385723;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 15px;
+    }
+
+    th {
+        background: #385723;
+        color: white;
+        padding: 13px;
+    }
+
+    td {
+        padding: 12px;
+        border: 1px solid #ddd;
+    }
+
+    tr:nth-child(even) {
+        background: #f4f7f2;
+    }
+
+    .calculator {
+        background: #f7faf5;
+        padding: 20px;
+        border-radius: 10px;
+        border: 1px solid #cbdcbe;
+    }
+
+    select,
+    input,
+    textarea {
+        width: 100%;
+        max-width: 500px;
+        padding: 11px;
+        margin-top: 6px;
+        border: 1px solid #bbb;
+        border-radius: 6px;
+        font-size: 15px;
+    }
+
+    select:focus,
+    input:focus,
+    textarea:focus {
+        outline: none;
+        border-color: #385723;
+    }
+
+    .total {
+        color: #385723;
+        margin-top: 15px;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .error {
+        color: #c62828;
+        font-weight: bold;
+    }
+
+    .success {
+        color: #2e7d32;
+        font-weight: bold;
+    }
+
+    footer {
+        background: #263d19;
+        color: white;
+        text-align: center;
+        padding: 22px;
+        margin-top: 35px;
+    }
+
+    @media (max-width: 700px) {
+        header h1 {
+            font-size: 28px;
+        }
+
+        nav a {
+            display: inline-block;
+            margin: 5px 8px;
+        }
+
+        .hero,
+        section {
+            padding: 18px;
+        }
+
+        table {
+            font-size: 14px;
+        }
+    }
+</style>
+```
+
+</head>
+
+<body>
+
+```
+<!-- Header -->
+<header>
+    <h1>ABC Online Book Store</h1>
+    <p>Your Online Destination for Books</p>
+    <h3 id="bookGreeting"></h3>
+</header>
+
+<!-- Navigation -->
+<nav>
+    <a href="#">Home</a>
+    <a href="#books">Books</a>
+    <a href="#categories">Categories</a>
+    <a href="#offers">Offers</a>
+    <a href="#contact">Contact</a>
+</nav>
+
+<div class="container">
+
+    <!-- Home -->
+    <div class="hero">
+        <h2>Welcome to ABC Online Book Store</h2>
+        <p>
+            Find books from different categories including
+            technology, programming, fiction, business and education.
+        </p>
+    </div>
+
+    <!-- Task 4 -->
+    <section id="offers">
+        <h2>Special Offer Details</h2>
+
+        <div class="offer-box">
+            <p><strong>Get 20% discount</strong> on selected books.</p>
+
+            <button onclick="toggleOffer()">
+                View Offer Terms & Promo Code
+            </button>
+
+            <div id="offerDetails" class="hidden-offer">
+                <p>
+                    Use Coupon Code:
+                    <strong>READ2026</strong>
+                    at checkout to claim 20% discount on orders above ₹500.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Task 5 -->
+    <section id="books">
+        <h2>Featured Book Preview</h2>
+
+        <div class="book-buttons">
+            <button onclick="changeBook(
+                'Python Programming',
+                'John Smith',
+                '₹450',
+                'Learn basics to advanced Python syntax with real-world examples.'
+            )">
+                Python Programming
+            </button>
+
+            <button onclick="changeBook(
+                'Web Technology',
+                'David Brown',
+                '₹500',
+                'Covers HTML5, CSS3, JavaScript, and Modern Web Frameworks.'
+            )">
+                Web Technology
+            </button>
+
+            <button onclick="changeBook(
+                'Database Management',
+                'Robert Lee',
+                '₹550',
+                'Master SQL queries, normalization, and relational databases.'
+            )">
+                Database Management
+            </button>
+        </div>
+
+        <div class="featured-book">
+            <h3 id="bookTitle">Python Programming</h3>
+
+            <p>
+                <strong>Author:</strong>
+                <span id="bookAuthor">John Smith</span>
+                &nbsp; | &nbsp;
+
+                <strong>Price:</strong>
+                <span id="bookPrice">₹450</span>
+            </p>
+
+            <p id="bookDesc">
+                Learn basics to advanced Python syntax with real-world examples.
+            </p>
+        </div>
+    </section>
+
+    <!-- Categories -->
+    <section id="categories">
+        <h2>Book Categories</h2>
+
+        <ul class="categories">
+            <li>Programming</li>
+            <li>Computer Science</li>
+            <li>Business</li>
+            <li>Fiction</li>
+            <li>Competitive Exams</li>
+        </ul>
+    </section>
+
+    <!-- Popular Books -->
+    <section>
+        <h2>Popular Books</h2>
+
+        <table>
+            <tr>
+                <th>Book Name</th>
+                <th>Author</th>
+                <th>Price</th>
+            </tr>
+
+            <tr>
+                <td>Python Programming</td>
+                <td>John Smith</td>
+                <td>₹450</td>
+            </tr>
+
+            <tr>
+                <td>Web Technology</td>
+                <td>David Brown</td>
+                <td>₹500</td>
+            </tr>
+
+            <tr>
+                <td>Database Management</td>
+                <td>Robert Lee</td>
+                <td>₹550</td>
+            </tr>
+        </table>
+    </section>
+
+    <!-- Task 3 -->
+    <section>
+        <h2>Order Price Calculator</h2>
+
+        <div class="calculator">
+
+            <form onsubmit="return false;">
+
+                <div class="form-group">
+                    <label><strong>Select Book:</strong></label>
+
+                    <select id="bookSelect" onchange="calculateBookTotal()">
+                        <option value="0">-- Select Book --</option>
+                        <option value="450">Python Programming - ₹450</option>
+                        <option value="500">Web Technology - ₹500</option>
+                        <option value="550">Database Management - ₹550</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label><strong>Quantity:</strong></label>
+
+                    <input
+                        type="number"
+                        id="bookQty"
+                        min="1"
+                        value="1"
+                        oninput="calculateBookTotal()"
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label>
+                        <input
+                            type="checkbox"
+                            id="expressShipping"
+                            onchange="calculateBookTotal()"
+                            style="width:auto;"
+                        >
+                        Add Express Delivery (₹50)
+                    </label>
+                </div>
+
+                <h3 class="total">
+                    Total Payable Amount:
+                    ₹<span id="bookTotal">0</span>
+                </h3>
+
+            </form>
+        </div>
+    </section>
+
+    <!-- Task 1 -->
+    <section>
+        <h2>Book Order / Registration Form</h2>
+
+        <form id="orderForm">
+
+            <div class="form-group">
+                <label><strong>Full Name:</strong></label>
+                <input type="text" id="custName">
+            </div>
+
+            <div class="form-group">
+                <label><strong>Email:</strong></label>
+                <input type="text" id="custEmail">
+            </div>
+
+            <div class="form-group">
+                <label><strong>Mobile Number:</strong></label>
+                <input type="text" id="custMobile">
+            </div>
+
+            <div class="form-group">
+                <label><strong>Delivery Pincode:</strong></label>
+                <input type="text" id="custPincode">
+            </div>
+
+            <div class="form-group">
+                <label><strong>Delivery Address:</strong></label>
+                <textarea id="custAddress" rows="4"></textarea>
+            </div>
+
+            <button type="submit">Place Order</button>
+
+        </form>
+
+        <p id="orderStatus"></p>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+        <h2>Contact Us</h2>
+
+        <p><strong>ABC Online Book Store</strong></p>
+        <p>Email: support@abconlinebookstore.com</p>
+        <p>Phone: +91 98765 43210</p>
+        <p>Open Monday - Saturday | 9:00 AM - 7:00 PM</p>
+    </section>
+
+</div>
+
+<!-- Footer -->
+<footer>
+    <p>© 2026 ABC Online Book Store</p>
+    <p>Read More. Learn More. Grow More.</p>
+</footer>
+
+<script>
+
+    // Task 2: Dynamic Greeting
+    window.onload = function() {
+
+        let hour = new Date().getHours();
+        let greeting = "";
+
+        if (hour < 12) {
+            greeting = "Good Morning! Start your day with a great book.";
+        }
+        else if (hour < 18) {
+            greeting = "Good Afternoon! Welcome to ABC Online Book Store.";
+        }
+        else {
+            greeting = "Good Evening! Perfect time for night reading.";
+        }
+
+        document.getElementById("bookGreeting").innerText = greeting;
+    };
+
+
+    // Task 4: Show / Hide Content
+    function toggleOffer() {
+
+        let offer = document.getElementById("offerDetails");
+
+        if (offer.style.display === "block") {
+            offer.style.display = "none";
+        }
+        else {
+            offer.style.display = "block";
+        }
+    }
+
+
+    // Task 5: Dynamic Content Change
+    function changeBook(title, author, price, desc) {
+
+        document.getElementById("bookTitle").innerText = title;
+        document.getElementById("bookAuthor").innerText = author;
+        document.getElementById("bookPrice").innerText = price;
+        document.getElementById("bookDesc").innerText = desc;
+    }
+
+
+    // Task 3: Dynamic Price Calculation
+    function calculateBookTotal() {
+
+        let price =
+            parseInt(document.getElementById("bookSelect").value) || 0;
+
+        let qty =
+            parseInt(document.getElementById("bookQty").value) || 0;
+
+        let shipping =
+            document.getElementById("expressShipping").checked
+            ? 50
+            : 0;
+
+        let total =
+            (price * qty) + (price > 0 ? shipping : 0);
+
+        document.getElementById("bookTotal").innerText =
+            total.toLocaleString("en-IN");
+    }
+
+
+    // Task 1: Form Validation
+    document.getElementById("orderForm")
+    .addEventListener("submit", function(event) {
+
+        event.preventDefault();
+
+        let name =
+            document.getElementById("custName").value.trim();
+
+        let email =
+            document.getElementById("custEmail").value.trim();
+
+        let mobile =
+            document.getElementById("custMobile").value.trim();
+
+        let pincode =
+            document.getElementById("custPincode").value.trim();
+
+        let address =
+            document.getElementById("custAddress").value.trim();
+
+        let status =
+            document.getElementById("orderStatus");
+
+
+        if (name === "") {
+
+            status.innerHTML =
+                "<span class='error'>Please enter your name.</span>";
+
+            return;
+        }
+
+
+        if (!email.includes("@") || !email.includes(".")) {
+
+            status.innerHTML =
+                "<span class='error'>Please enter a valid email address.</span>";
+
+            return;
+        }
+
+
+        if (mobile.length !== 10 || isNaN(mobile)) {
+
+            status.innerHTML =
+                "<span class='error'>Mobile number must be 10 digits.</span>";
+
+            return;
+        }
+
+
+        if (pincode.length !== 6 || isNaN(pincode)) {
+
+            status.innerHTML =
+                "<span class='error'>Pincode must be 6 numeric digits.</span>";
+
+            return;
+        }
+
+
+        if (address.length < 10) {
+
+            status.innerHTML =
+                "<span class='error'>Please enter a complete address (min 10 characters).</span>";
+
+            return;
+        }
+
+
+        status.innerHTML =
+            "<span class='success'>Order Placed Successfully!</span>";
+    });
+
+</script>
+```
+
+</body>
+</html>
