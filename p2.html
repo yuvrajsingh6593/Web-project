@@ -1,1050 +1,1799 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#073b4c">
 
-    <title>City Care Hospital</title>
+    <title>City Care Hospital | Healthcare You Can Trust</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <style>
+        :root {
+            --navy: #073b4c;
+            --navy-light: #0b5965;
+            --teal: #13a89e;
+            --mint: #dff7f2;
+            --cyan: #eaf8fb;
+            --white: #ffffff;
+            --bg: #f5fafb;
+            --ink: #17313b;
+            --muted: #647780;
+            --border: #e1ecef;
+            --danger: #d94747;
+            --success: #168b68;
+            --shadow: 0 15px 40px rgba(7, 59, 76, 0.08);
+            --radius: 20px;
+        }
 
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
 
         html {
             scroll-behavior: smooth;
+            scroll-padding-top: 100px;
         }
 
         body {
-            font-family: Arial, sans-serif;
-            background: #f4f9fc;
-            color: #222;
+            font-family: "DM Sans", sans-serif;
+            background: var(--bg);
+            color: var(--ink);
             line-height: 1.6;
         }
 
-        /* ================= HEADER ================= */
+        h1, h2, h3, h4 {
+            font-family: "Manrope", sans-serif;
+            line-height: 1.25;
+        }
 
-        header {
-            background: linear-gradient(135deg, #0275d8, #00a8cc);
+        button, input, select {
+            font: inherit;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* TOP BAR */
+
+        .topbar {
+            background: var(--navy);
+            color: #d7edf0;
+            padding: 9px 0;
+            font-size: 13px;
+        }
+
+        .topbar-inner {
+            width: 92%;
+            max-width: 1160px;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .topbar strong {
             color: white;
-            text-align: center;
-            padding: 35px 20px;
         }
 
-        header h1 {
-            font-size: 38px;
-            margin-bottom: 8px;
-        }
+        /* NAVIGATION */
 
-        header p {
-            font-size: 18px;
-        }
-
-        #hospitalGreeting {
-            margin-top: 15px;
-            color: white;
-            font-size: 17px;
-        }
-
-        /* ================= NAVIGATION ================= */
-
-        nav {
-            background: white;
-            text-align: center;
-            padding: 15px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        .navbar {
             position: sticky;
             top: 0;
             z-index: 100;
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
         }
 
-        nav a {
-            text-decoration: none;
-            color: #0275d8;
-            font-weight: bold;
-            margin: 0 15px;
-            transition: 0.3s;
+        .nav-inner {
+            width: 92%;
+            max-width: 1160px;
+            min-height: 76px;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
         }
 
-        nav a:hover {
-            color: #00a8cc;
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            color: var(--navy);
+            font-family: "Manrope", sans-serif;
+            font-weight: 800;
+            font-size: 19px;
         }
 
-        /* ================= MAIN ================= */
-
-        .container {
-            width: 90%;
-            max-width: 1100px;
-            margin: 35px auto;
-        }
-
-        .hero {
-            background: white;
-            padding: 35px;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.07);
-            margin-bottom: 30px;
-        }
-
-        .hero h2 {
-            color: #0275d8;
-            margin-bottom: 12px;
-        }
-
-        .hero p {
-            color: #555;
-            margin-bottom: 8px;
-        }
-
-        /* ================= SECTIONS ================= */
-
-        section {
-            background: white;
-            padding: 30px;
-            margin-bottom: 30px;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.06);
-        }
-
-        section h2 {
-            color: #0275d8;
-            margin-bottom: 15px;
-        }
-
-        /* ================= BUTTONS ================= */
-
-        button {
-            background: #0275d8;
+        .brand-mark {
+            width: 43px;
+            height: 43px;
+            display: grid;
+            place-items: center;
+            background: var(--teal);
             color: white;
-            border: none;
-            padding: 11px 18px;
-            border-radius: 7px;
-            cursor: pointer;
-            font-size: 15px;
-            margin: 5px;
+            border-radius: 14px;
+            font-size: 25px;
+        }
+
+        .brand small {
+            display: block;
+            color: var(--muted);
+            font-family: "DM Sans", sans-serif;
+            font-size: 10px;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .nav-links a {
+            color: #526871;
+            font-size: 14px;
+            font-weight: 700;
             transition: 0.3s;
         }
 
-        button:hover {
-            background: #01579b;
+        .nav-links a:hover {
+            color: var(--teal);
+        }
+
+        .nav-cta,
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: none;
+            border-radius: 50px;
+            padding: 12px 21px;
+            font-weight: 700;
+            transition: 0.3s;
+        }
+
+        .nav-cta,
+        .btn-primary {
+            background: var(--teal);
+            color: white;
+            box-shadow: 0 8px 20px rgba(19, 168, 158, 0.2);
+        }
+
+        .nav-cta:hover,
+        .btn-primary:hover {
+            background: #0c8f87;
             transform: translateY(-2px);
         }
 
-        /* ================= FACILITIES ================= */
+        .menu-toggle {
+            display: none;
+            border: none;
+            background: var(--cyan);
+            color: var(--navy);
+            width: 43px;
+            height: 43px;
+            border-radius: 12px;
+            font-size: 22px;
+        }
+
+        /* HERO SECTION */
+
+        .hero {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(115deg, #073b4c, #0b5965 60%, #087f7b);
+            color: white;
+        }
+
+        .hero::before,
+        .hero::after {
+            content: "";
+            position: absolute;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 50%;
+        }
+
+        .hero::before {
+            width: 520px;
+            height: 520px;
+            right: -120px;
+            top: -240px;
+        }
+
+        .hero::after {
+            width: 390px;
+            height: 390px;
+            right: -50px;
+            top: -175px;
+        }
+
+        .hero-inner {
+            width: 92%;
+            max-width: 1160px;
+            min-height: 510px;
+            margin: auto;
+            padding: 75px 0;
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            align-items: center;
+            gap: 45px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            padding: 8px 14px;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 50px;
+            color: #b9f2e8;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 22px;
+        }
+
+        .eyebrow span {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #5ee0c4;
+        }
+
+        .hero h1 {
+            max-width: 680px;
+            font-size: clamp(40px, 5vw, 70px);
+            letter-spacing: -2px;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 em {
+            color: #75e0d0;
+            font-style: normal;
+        }
+
+        .hero-copy {
+            max-width: 570px;
+            color: #d0e5e8;
+            font-size: 17px;
+            margin-bottom: 30px;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 13px;
+            flex-wrap: wrap;
+        }
+
+        .btn-outline {
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.45);
+            background: rgba(255, 255, 255, 0.07);
+        }
+
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.17);
+        }
+
+        .hero-panel {
+            justify-self: end;
+            width: 100%;
+            max-width: 390px;
+            padding: 28px;
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 27px;
+            backdrop-filter: blur(12px);
+        }
+
+        .panel-icon {
+            width: 58px;
+            height: 58px;
+            display: grid;
+            place-items: center;
+            border-radius: 18px;
+            background: #b9f2e8;
+            color: var(--navy);
+            font-size: 29px;
+            margin-bottom: 18px;
+        }
+
+        .hero-panel h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+
+        .hero-panel p {
+            color: #d0e5e8;
+            font-size: 14px;
+        }
+
+        .panel-line {
+            height: 1px;
+            background: rgba(255, 255, 255, 0.2);
+            margin: 20px 0;
+        }
+
+        .open-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+        }
+
+        .open-pill {
+            color: #c7ffef;
+            background: rgba(60, 220, 168, 0.15);
+            padding: 5px 11px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        #hospitalGreeting {
+            margin-top: 18px;
+            color: #b9f2e8;
+            font-weight: 700;
+        }
+
+        /* STATISTICS */
+
+        .stats-wrap {
+            width: 92%;
+            max-width: 1000px;
+            margin: -35px auto 0;
+            position: relative;
+            z-index: 3;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            background: white;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            padding: 25px 15px;
+        }
+
+        .stat {
+            text-align: center;
+            border-right: 1px solid var(--border);
+            padding: 4px 10px;
+        }
+
+        .stat:last-child {
+            border: none;
+        }
+
+        .stat strong {
+            display: block;
+            color: var(--navy);
+            font: 800 29px "Manrope", sans-serif;
+        }
+
+        .stat span {
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        /* COMMON SECTIONS */
+
+        .section {
+            width: 92%;
+            max-width: 1160px;
+            margin: 90px auto;
+        }
+
+        .section-heading {
+            max-width: 650px;
+            margin-bottom: 34px;
+        }
+
+        .kicker {
+            color: var(--teal);
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .section-heading h2 {
+            color: var(--navy);
+            font-size: clamp(30px, 3.5vw, 44px);
+            letter-spacing: -1px;
+            margin-bottom: 12px;
+        }
+
+        .section-heading p {
+            color: var(--muted);
+        }
+
+        /* FACILITIES */
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .feature-card,
+        .doctor-card,
+        .dept-card,
+        .content-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 25px;
+            box-shadow: 0 8px 28px rgba(7, 59, 76, 0.035);
+            transition: 0.25s;
+        }
+
+        .feature-card:hover,
+        .doctor-card:hover,
+        .dept-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+        }
+
+        .feature-icon {
+            width: 52px;
+            height: 52px;
+            display: grid;
+            place-items: center;
+            border-radius: 16px;
+            background: var(--mint);
+            font-size: 25px;
+            margin-bottom: 17px;
+        }
+
+        .feature-card h3,
+        .doctor-card h3,
+        .dept-card h3 {
+            color: var(--navy);
+            margin-bottom: 8px;
+            font-size: 18px;
+        }
+
+        .feature-card p,
+        .doctor-card p,
+        .dept-card p {
+            color: var(--muted);
+            font-size: 14px;
+        }
 
         .hidden-info {
             display: none;
-            background: #eef7ff;
-            padding: 18px;
-            margin-top: 15px;
-            border-left: 4px solid #0275d8;
-            border-radius: 7px;
-        }
-
-        /* ================= DOCTORS ================= */
-
-        .doctor-buttons {
-            margin: 15px 0;
-        }
-
-        .doctor-box {
+            background: var(--cyan);
+            padding: 20px;
             margin-top: 20px;
-            padding: 22px;
-            border: 1px solid #cfe4f5;
+            border-left: 4px solid var(--teal);
             border-radius: 10px;
-            background: #f8fcff;
+            color: var(--navy);
         }
 
-        .doctor-box h3 {
-            color: #0275d8;
-            margin-bottom: 8px;
+        /* ABOUT */
+
+        .about-band {
+            background: #eaf8f7;
+            padding: 65px 0;
         }
 
-        /* ================= DEPARTMENTS ================= */
+        .about-inner {
+            width: 92%;
+            max-width: 1160px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 55px;
+            align-items: center;
+        }
+
+        .about-visual {
+            min-height: 310px;
+            border-radius: 28px;
+            background: linear-gradient(145deg, #bceee6, #e7f8f5);
+            display: grid;
+            place-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-visual .cross {
+            font-size: 160px;
+            color: rgba(7, 59, 76, 0.13);
+            font-weight: 800;
+        }
+
+        .about-bubble {
+            position: absolute;
+            bottom: 24px;
+            left: 24px;
+            background: white;
+            padding: 17px 20px;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            font-weight: 700;
+            color: var(--navy);
+        }
+
+        .about-copy h2 {
+            font-size: 38px;
+            color: var(--navy);
+            margin-bottom: 16px;
+        }
+
+        .about-copy p {
+            color: var(--muted);
+            margin-bottom: 18px;
+        }
+
+        .check-list {
+            list-style: none;
+            display: grid;
+            gap: 10px;
+            color: #3f5962;
+            font-weight: 600;
+        }
+
+        .check-list li::before {
+            content: "✓";
+            color: var(--teal);
+            font-weight: 900;
+            margin-right: 10px;
+        }
+
+        /* DOCTORS */
+
+        .doctor-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .doctor-avatar {
+            width: 72px;
+            height: 72px;
+            border-radius: 22px;
+            background: linear-gradient(135deg, #dff7f2, #c8e9f0);
+            display: grid;
+            place-items: center;
+            font-size: 34px;
+            margin-bottom: 16px;
+        }
+
+        .doctor-role {
+            color: var(--teal) !important;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .doctor-time {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 7px 11px;
+            border-radius: 9px;
+            background: #f0f8f9;
+            color: var(--navy);
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .doctor-controls {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .chip {
+            background: #edf7f8;
+            color: var(--navy);
+            border: 1px solid var(--border);
+            padding: 9px 16px;
+            border-radius: 50px;
+            font-weight: 700;
+        }
+
+        .chip.active,
+        .chip:hover {
+            background: var(--navy);
+            color: white;
+        }
+
+        /* DEPARTMENTS */
 
         .department-grid {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
             gap: 15px;
-            margin-top: 20px;
         }
 
-        .department-card {
-            background: #f4faff;
-            border: 1px solid #d8eaf7;
-            padding: 18px 10px;
+        .dept-card {
             text-align: center;
-            border-radius: 10px;
-            font-weight: bold;
-            color: #0275d8;
-            transition: 0.3s;
+            padding: 22px 12px;
         }
 
-        .department-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+        .dept-card .feature-icon {
+            margin: 0 auto 13px;
         }
 
-        /* ================= BILL ================= */
+        /* BILLING AND APPOINTMENT */
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 22px;
+            align-items: start;
+        }
+
+        .content-card h2 {
+            color: var(--navy);
+            font-size: 25px;
+            margin-bottom: 10px;
+        }
+
+        .muted {
+            color: var(--muted);
+            font-size: 14px;
+        }
 
         .service-list {
-            margin-top: 15px;
+            display: grid;
+            gap: 10px;
+            margin: 20px 0;
         }
 
         .service-item {
-            display: block;
-            padding: 12px;
-            margin: 8px 0;
-            background: #f8fcff;
-            border: 1px solid #dcecf7;
-            border-radius: 7px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 13px 14px;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            background: #fbfefe;
             cursor: pointer;
         }
 
+        .service-item:hover {
+            border-color: #9bd9d2;
+        }
+
         .service-item input {
-            width: auto;
-            margin-right: 8px;
+            accent-color: var(--teal);
+            width: 18px;
+            height: 18px;
         }
 
-        .bill-result {
-            margin-top: 20px;
-            background: #eaf8ff;
+        .service-item span {
+            flex: 1;
+            font-weight: 600;
+        }
+
+        .service-item strong {
+            color: var(--navy);
+        }
+
+        .bill-total {
+            background: var(--navy);
+            color: white;
             padding: 20px;
-            border-left: 4px solid #0275d8;
-            border-radius: 7px;
+            border-radius: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
         }
 
-        #billTotal {
-            color: #0275d8;
-            font-size: 25px;
+        .bill-total strong {
+            font: 800 27px "Manrope", sans-serif;
+            color: #82e4d5;
         }
 
-        /* ================= FORM ================= */
+        /* FORM */
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
 
         .form-group {
-            margin-bottom: 18px;
+            display: grid;
+            gap: 7px;
+        }
+
+        .form-group.full {
+            grid-column: 1 / -1;
         }
 
         label {
-            font-weight: bold;
-            display: block;
+            color: #405a63;
+            font-weight: 700;
+            font-size: 14px;
         }
 
         input,
         select {
             width: 100%;
-            max-width: 550px;
-            padding: 11px;
-            margin-top: 6px;
-            border: 1px solid #bbb;
-            border-radius: 6px;
-            font-size: 15px;
+            border: 1px solid #d6e4e7;
+            border-radius: 10px;
+            padding: 12px 13px;
+            background: #fbfefe;
+            color: var(--ink);
+            outline: none;
         }
 
         input:focus,
         select:focus {
-            outline: none;
-            border-color: #0275d8;
-            box-shadow: 0 0 5px rgba(2,117,216,0.2);
+            border-color: var(--teal);
+            box-shadow: 0 0 0 3px rgba(19, 168, 158, 0.1);
         }
 
-        /* ================= STATUS ================= */
-
-        .error {
-            color: #d93025;
-            font-weight: bold;
-        }
-
-        .success {
-            color: #168b36;
-            font-weight: bold;
+        .form-submit {
+            margin-top: 18px;
+            width: 100%;
         }
 
         #appointmentStatus {
-            margin-top: 15px;
+            margin-top: 14px;
+            font-weight: 700;
+            min-height: 24px;
         }
 
-        /* ================= EMERGENCY ================= */
+        .error {
+            color: var(--danger);
+        }
+
+        .success {
+            color: var(--success);
+        }
+
+        /* EMERGENCY */
 
         .emergency {
-            background: #fff5f5;
-            border-left: 5px solid #dc3545;
+            background: linear-gradient(110deg, #8e2834, #c44550);
+            color: white;
+            border-radius: 24px;
+            padding: 35px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 25px;
         }
 
         .emergency h2 {
-            color: #dc3545;
+            font-size: 29px;
+            margin-bottom: 8px;
+        }
+
+        .emergency p {
+            color: #ffe4e5;
         }
 
         .emergency-number {
-            font-size: 25px;
-            font-weight: bold;
-            color: #dc3545;
-            margin-top: 10px;
+            font: 800 27px "Manrope", sans-serif;
+            white-space: nowrap;
         }
 
-        /* ================= FOOTER ================= */
+        /* FOOTER */
 
         footer {
-            background: #063b61;
+            background: #052f3d;
+            color: #c5dadd;
+            padding: 45px 0 20px;
+            margin-top: 90px;
+        }
+
+        .footer-inner {
+            width: 92%;
+            max-width: 1160px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 35px;
+            padding-bottom: 30px;
+        }
+
+        footer h3,
+        footer h4 {
             color: white;
+            margin-bottom: 13px;
+        }
+
+        footer p,
+        footer a {
+            font-size: 14px;
+            color: #b7ced2;
+        }
+
+        .footer-links {
+            display: grid;
+            gap: 8px;
+        }
+
+        .footer-links a:hover {
+            color: #75e0d0;
+        }
+
+        .copyright {
+            width: 92%;
+            max-width: 1160px;
+            margin: auto;
+            border-top: 1px solid rgba(255, 255, 255, 0.13);
+            padding-top: 18px;
             text-align: center;
-            padding: 25px;
-            margin-top: 40px;
+            font-size: 13px;
+            color: #8eabb1;
         }
 
-        footer p {
-            margin: 5px;
-        }
+        /* RESPONSIVE DESIGN */
 
-        /* ================= RESPONSIVE ================= */
-
-        @media (max-width: 850px) {
-
-            header h1 {
-                font-size: 30px;
+        @media (max-width: 900px) {
+            .nav-links {
+                gap: 13px;
+                font-size: 13px;
             }
 
-            nav a {
-                display: inline-block;
-                margin: 6px 8px;
+            .hero-inner {
+                grid-template-columns: 1fr 0.75fr;
+                gap: 25px;
             }
 
             .department-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 700px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-inner {
+                min-height: 68px;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 68px;
+                left: 0;
+                right: 0;
+                background: white;
+                padding: 18px 5%;
+                box-shadow: 0 15px 25px rgba(7, 59, 76, 0.1);
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0;
+            }
+
+            .nav-links.open {
+                display: flex;
+            }
+
+            .nav-links a {
+                padding: 11px 4px;
+                border-bottom: 1px solid var(--border);
+            }
+
+            .nav-cta {
+                display: none;
+            }
+
+            .hero-inner {
+                grid-template-columns: 1fr;
+                padding: 60px 0 75px;
+            }
+
+            .hero-panel {
+                justify-self: start;
+                max-width: 470px;
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 18px;
+            }
+
+            .stat:nth-child(2) {
+                border: none;
+            }
+
+            .stat:nth-child(3),
+            .stat:nth-child(4) {
+                border-top: 1px solid var(--border);
+                padding-top: 17px;
+            }
+
+            .feature-grid,
+            .doctor-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
 
+            .about-inner,
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-visual {
+                min-height: 230px;
+            }
+
+            .emergency {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .footer-inner {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .footer-inner > div:first-child {
+                grid-column: 1 / -1;
+            }
         }
 
         @media (max-width: 500px) {
-
-            .container {
-                width: 94%;
+            .topbar-inner {
+                justify-content: center;
+                text-align: center;
             }
 
-            section,
-            .hero {
-                padding: 20px;
-            }
-
+            .feature-grid,
+            .doctor-grid,
             .department-grid {
                 grid-template-columns: 1fr;
             }
 
-            nav a {
-                display: block;
-                margin: 8px;
+            .form-grid {
+                grid-template-columns: 1fr;
             }
 
+            .form-group.full {
+                grid-column: auto;
+            }
+
+            .section {
+                margin: 65px auto;
+            }
+
+            .content-card {
+                padding: 20px;
+            }
+
+            .hero h1 {
+                font-size: 40px;
+            }
+
+            .emergency-number {
+                font-size: 22px;
+            }
+
+            .footer-inner {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-inner > div:first-child {
+                grid-column: auto;
+            }
         }
-
     </style>
-
 </head>
-
 
 <body>
 
+    <!-- TOP BAR -->
 
-    <!-- ================= HEADER ================= -->
+    <div class="topbar">
+        <div class="topbar-inner">
+            <span>📍 Quality Healthcare for Everyone</span>
+            <span>☎ Emergency: <strong>9876543210</strong></span>
+        </div>
+    </div>
 
-    <header>
+    <!-- NAVIGATION -->
 
-        <h1>City Care Hospital</h1>
+    <nav class="navbar">
+        <div class="nav-inner">
 
-        <p>Quality Healthcare for Everyone</p>
+            <a href="#home" class="brand">
+                <span class="brand-mark">✚</span>
+                <span>
+                    City Care
+                    <small>Hospital & Healthcare</small>
+                </span>
+            </a>
 
-        <!-- Task 2: Dynamic Greeting -->
+            <button class="menu-toggle" id="menuToggle" aria-label="Open navigation">
+                ☰
+            </button>
 
-        <h3 id="hospitalGreeting"></h3>
+            <div class="nav-links" id="navLinks">
+                <a href="#home">Home</a>
+                <a href="#facilities">Facilities</a>
+                <a href="#doctors">Doctors</a>
+                <a href="#departments">Departments</a>
+                <a href="#billing">Bill Estimator</a>
+                <a href="#appointment">Appointment</a>
+            </div>
 
-    </header>
+            <a href="#appointment" class="nav-cta">Book Appointment →</a>
 
-
-    <!-- ================= NAVIGATION ================= -->
-
-    <nav>
-
-        <a href="#home">Home</a>
-        <a href="#facilities">Facilities</a>
-        <a href="#doctors">Doctors</a>
-        <a href="#departments">Departments</a>
-        <a href="#billing">Bill Estimator</a>
-        <a href="#appointment">Appointment</a>
-
+        </div>
     </nav>
 
+    <!-- HERO SECTION -->
 
-    <main class="container">
+    <header class="hero" id="home">
 
+        <div class="hero-inner">
 
-        <!-- ================= HOME ================= -->
+            <div class="hero-content">
 
-        <div class="hero" id="home">
+                <div class="eyebrow">
+                    <span></span>
+                    YOUR HEALTH, OUR PRIORITY
+                </div>
 
-            <h2>Welcome to City Care Hospital</h2>
+                <h1>
+                    Caring for Life.
+                    <em>Healing with Heart.</em>
+                </h1>
 
-            <p>
-                City Care Hospital provides modern healthcare facilities
-                with experienced doctors and trained medical staff.
-            </p>
+                <p class="hero-copy">
+                    Welcome to City Care Hospital. We combine modern medical
+                    technology, experienced doctors and compassionate care
+                    to provide quality healthcare for everyone.
+                </p>
 
-            <p>
-                We are committed to providing safe, accessible and
-                quality healthcare services to patients.
-            </p>
+                <div class="hero-actions">
+                    <a href="#appointment" class="btn btn-primary">
+                        Book an Appointment →
+                    </a>
+
+                    <a href="#facilities" class="btn btn-outline">
+                        Explore Facilities
+                    </a>
+                </div>
+
+                <h3 id="hospitalGreeting"></h3>
+
+            </div>
+
+            <div class="hero-panel">
+
+                <div class="panel-icon">✚</div>
+
+                <h3>Healthcare You Can Trust</h3>
+
+                <p>
+                    Our dedicated medical team is committed to your health,
+                    comfort and well-being at every step.
+                </p>
+
+                <div class="panel-line"></div>
+
+                <div class="open-row">
+                    <span>Hospital Services</span>
+                    <span class="open-pill">Available 24/7</span>
+                </div>
+
+                <div class="panel-line"></div>
+
+                <div class="open-row">
+                    <span>Emergency Support</span>
+                    <strong>Always Open</strong>
+                </div>
+
+            </div>
 
         </div>
 
+    </header>
 
-        <!-- ================= TASK 4 ================= -->
+    <!-- STATISTICS -->
 
-        <section id="facilities">
+    <div class="stats-wrap">
 
-            <h2>Hospital Accreditation & Facilities</h2>
+        <div class="stats">
 
-            <p>
-                Our hospital provides advanced medical facilities
-                supported by trained healthcare professionals.
-            </p>
+            <div class="stat">
+                <strong>24/7</strong>
+                <span>Emergency Services</span>
+            </div>
 
-            <button onclick="toggleHospitalInfo()">
-                Show Special Facilities
-            </button>
+            <div class="stat">
+                <strong>50+</strong>
+                <span>Medical Professionals</span>
+            </div>
+
+            <div class="stat">
+                <strong>15+</strong>
+                <span>Years of Experience</span>
+            </div>
+
+            <div class="stat">
+                <strong>10K+</strong>
+                <span>Patients Served</span>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- FACILITIES -->
+
+    <main>
+
+        <section class="section" id="facilities">
+
+            <div class="section-heading">
+                <div class="kicker">Our Services</div>
+                <h2>Advanced Facilities for Better Care</h2>
+                <p>
+                    We provide modern healthcare facilities designed to
+                    support patients with safe, reliable and quality treatment.
+                </p>
+            </div>
+
+            <div class="feature-grid">
+
+                <div class="feature-card">
+                    <div class="feature-icon">🚑</div>
+                    <h3>Emergency Care</h3>
+                    <p>
+                        Round-the-clock emergency support with a dedicated
+                        medical response team.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🩺</div>
+                    <h3>Expert Consultation</h3>
+                    <p>
+                        Consult experienced specialists across multiple
+                        medical departments.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🔬</div>
+                    <h3>Diagnostic Services</h3>
+                    <p>
+                        Modern diagnostic facilities for medical testing
+                        and accurate reports.
+                    </p>
+                </div>
+
+            </div>
+
+            <div style="text-align:center; margin-top:25px;">
+                <button class="btn btn-primary" onclick="toggleHospitalInfo()">
+                    Show Special Facilities
+                </button>
+            </div>
 
             <div id="moreHospitalInfo" class="hidden-info">
 
+                <h3 style="margin-bottom:10px;">Our Special Facilities</h3>
+
                 <p>
-                    <strong>Facilities:</strong>
-                    24/7 ICU & Trauma Center,
-                    NABL Accredited Pathology Lab,
-                    Advanced MRI & CT Scan,
-                    and 5 Operation Theaters.
+                    ✓ 24/7 ICU & Trauma Center
+                    <br>
+                    ✓ NABL Accredited Pathology Lab
+                    <br>
+                    ✓ Advanced MRI & CT Scan
+                    <br>
+                    ✓ 5 Operation Theaters
+                    <br>
+                    ✓ Experienced Nursing Staff
                 </p>
 
             </div>
 
         </section>
 
+        <!-- ABOUT SECTION -->
 
-        <!-- ================= TASK 5 ================= -->
+        <div class="about-band">
 
-        <section id="doctors">
+            <div class="about-inner">
 
-            <h2>Specialist Doctors On Duty</h2>
+                <div class="about-visual">
+                    <div class="cross">✚</div>
 
-            <p>
-                Select a department to view the head specialist.
-            </p>
+                    <div class="about-bubble">
+                        Your Health Matters to Us ❤️
+                    </div>
+                </div>
 
-            <div class="doctor-buttons">
+                <div class="about-copy">
 
-                <button onclick="changeDoctor(
+                    <div class="kicker">About Our Hospital</div>
+
+                    <h2>Dedicated to Your Health and Well-being</h2>
+
+                    <p>
+                        City Care Hospital is committed to delivering
+                        patient-focused healthcare through modern facilities,
+                        professional medical staff and compassionate service.
+                    </p>
+
+                    <ul class="check-list">
+                        <li>Experienced medical professionals</li>
+                        <li>Modern diagnostic facilities</li>
+                        <li>Patient-friendly environment</li>
+                        <li>Emergency support available 24/7</li>
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- DOCTORS -->
+
+        <section class="section" id="doctors">
+
+            <div class="section-heading">
+                <div class="kicker">Meet Our Specialists</div>
+                <h2>Experienced Doctors On Duty</h2>
+                <p>
+                    Select a department to view the specialist and
+                    their consultation timings.
+                </p>
+            </div>
+
+            <div class="doctor-controls">
+
+                <button class="chip active" onclick="changeDoctor(
                     'Dr. Rajesh Sharma',
                     'Cardiologist',
-                    '10:00 AM - 02:00 PM'
+                    '10:00 AM - 02:00 PM',
+                    this
                 )">
                     Cardiology
                 </button>
 
-                <button onclick="changeDoctor(
+                <button class="chip" onclick="changeDoctor(
                     'Dr. Sunita Rao',
                     'Neurologist',
-                    '01:00 PM - 05:00 PM'
+                    '01:00 PM - 05:00 PM',
+                    this
                 )">
                     Neurology
                 </button>
 
-                <button onclick="changeDoctor(
+                <button class="chip" onclick="changeDoctor(
                     'Dr. Anil Verma',
                     'Orthopedic Surgeon',
-                    '09:00 AM - 01:00 PM'
+                    '09:00 AM - 01:00 PM',
+                    this
                 )">
                     Orthopedics
                 </button>
 
             </div>
 
+            <div class="doctor-grid">
 
-            <div class="doctor-box">
+                <div class="doctor-card">
 
-                <h3 id="docName">
-                    Dr. Rajesh Sharma
-                </h3>
+                    <div class="doctor-avatar">👨‍⚕️</div>
 
-                <p id="docSpec">
-                    Specialization: Cardiologist
-                </p>
+                    <h3 id="docName">Dr. Rajesh Sharma</h3>
 
-                <p id="docTime">
-                    Timings: 10:00 AM - 02:00 PM
-                </p>
+                    <p class="doctor-role" id="docSpec">
+                        Cardiologist
+                    </p>
+
+                    <p>
+                        Specialist in heart health and cardiovascular care.
+                    </p>
+
+                    <span class="doctor-time" id="docTime">
+                        10:00 AM - 02:00 PM
+                    </span>
+
+                </div>
+
+                <div class="doctor-card">
+
+                    <div class="doctor-avatar">👩‍⚕️</div>
+
+                    <h3>Dr. Sunita Rao</h3>
+
+                    <p class="doctor-role">Neurologist</p>
+
+                    <p>
+                        Specialist in brain, nerve and neurological care.
+                    </p>
+
+                    <span class="doctor-time">
+                        01:00 PM - 05:00 PM
+                    </span>
+
+                </div>
+
+                <div class="doctor-card">
+
+                    <div class="doctor-avatar">👨‍⚕️</div>
+
+                    <h3>Dr. Anil Verma</h3>
+
+                    <p class="doctor-role">Orthopedic Surgeon</p>
+
+                    <p>
+                        Specialist in bone, joint and muscle care.
+                    </p>
+
+                    <span class="doctor-time">
+                        09:00 AM - 01:00 PM
+                    </span>
+
+                </div>
 
             </div>
 
         </section>
 
+        <!-- DEPARTMENTS -->
 
-        <!-- ================= DEPARTMENTS ================= -->
+        <section class="section" id="departments">
 
-        <section id="departments">
-
-            <h2>Our Departments</h2>
+            <div class="section-heading">
+                <div class="kicker">Medical Departments</div>
+                <h2>Our Specialized Departments</h2>
+                <p>
+                    Comprehensive healthcare services under one roof.
+                </p>
+            </div>
 
             <div class="department-grid">
 
-                <div class="department-card">
-                    Cardiology
+                <div class="dept-card">
+                    <div class="feature-icon">❤️</div>
+                    <h3>Cardiology</h3>
+                    <p>Heart care services</p>
                 </div>
 
-                <div class="department-card">
-                    Neurology
+                <div class="dept-card">
+                    <div class="feature-icon">🧠</div>
+                    <h3>Neurology</h3>
+                    <p>Brain and nerve care</p>
                 </div>
 
-                <div class="department-card">
-                    Orthopedics
+                <div class="dept-card">
+                    <div class="feature-icon">🦴</div>
+                    <h3>Orthopedics</h3>
+                    <p>Bone and joint care</p>
                 </div>
 
-                <div class="department-card">
-                    General Medicine
+                <div class="dept-card">
+                    <div class="feature-icon">🩺</div>
+                    <h3>General Medicine</h3>
+                    <p>General health services</p>
                 </div>
 
-                <div class="department-card">
-                    Pediatrics
+                <div class="dept-card">
+                    <div class="feature-icon">👶</div>
+                    <h3>Pediatrics</h3>
+                    <p>Child healthcare</p>
                 </div>
 
             </div>
 
         </section>
 
+        <!-- BILLING AND APPOINTMENT -->
 
-        <!-- ================= TASK 3 ================= -->
+        <section class="section" id="billing">
 
-        <section id="billing">
+            <div class="section-heading">
+                <div class="kicker">Patient Services</div>
+                <h2>Plan Your Hospital Visit</h2>
+                <p>
+                    Estimate medical service charges and book an appointment
+                    using the forms below.
+                </p>
+            </div>
 
-            <h2>Medical Bill Estimator</h2>
+            <div class="tools-grid">
 
-            <p>
-                Select the required medical services to calculate
-                the estimated total charge.
-            </p>
+                <!-- BILL ESTIMATOR -->
 
+                <div class="content-card">
 
-            <div class="service-list">
+                    <h2>Medical Bill Estimator</h2>
 
-                <label class="service-item">
+                    <p class="muted">
+                        Select the medical services to calculate the
+                        estimated total charge.
+                    </p>
 
-                    <input
-                        type="checkbox"
-                        id="chkConsult"
-                        value="500"
-                        onchange="calculateBill()"
-                    >
+                    <div class="service-list">
 
-                    Doctor Consultation
-                    — ₹500
+                        <label class="service-item">
+                            <input type="checkbox" id="chkConsult"
+                                   value="500" onchange="calculateBill()">
+                            <span>Doctor Consultation</span>
+                            <strong>₹500</strong>
+                        </label>
 
-                </label>
+                        <label class="service-item">
+                            <input type="checkbox" id="chkBlood"
+                                   value="300" onchange="calculateBill()">
+                            <span>Blood Test</span>
+                            <strong>₹300</strong>
+                        </label>
 
+                        <label class="service-item">
+                            <input type="checkbox" id="chkXray"
+                                   value="700" onchange="calculateBill()">
+                            <span>X-Ray</span>
+                            <strong>₹700</strong>
+                        </label>
 
-                <label class="service-item">
+                        <label class="service-item">
+                            <input type="checkbox" id="chkMRI"
+                                   value="2500" onchange="calculateBill()">
+                            <span>MRI Scan</span>
+                            <strong>₹2,500</strong>
+                        </label>
 
-                    <input
-                        type="checkbox"
-                        id="chkBlood"
-                        value="300"
-                        onchange="calculateBill()"
-                    >
+                    </div>
 
-                    Blood Test
-                    — ₹300
+                    <div class="bill-total">
+                        <span>Estimated Total</span>
+                        <strong>₹<span id="billTotal">0</span></strong>
+                    </div>
 
-                </label>
+                    <p class="muted" style="margin-top:12px;">
+                        *These are sample prices for demonstration.
+                    </p>
 
+                </div>
 
-                <label class="service-item">
+                <!-- APPOINTMENT FORM -->
 
-                    <input
-                        type="checkbox"
-                        id="chkXray"
-                        value="700"
-                        onchange="calculateBill()"
-                    >
+                <div class="content-card" id="appointment">
 
-                    X-Ray
-                    — ₹700
+                    <h2>Book an Appointment</h2>
 
-                </label>
+                    <p class="muted">
+                        Enter your details to request an appointment.
+                    </p>
 
+                    <form id="appointmentForm">
 
-                <label class="service-item">
+                        <div class="form-grid">
 
-                    <input
-                        type="checkbox"
-                        id="chkMRI"
-                        value="2500"
-                        onchange="calculateBill()"
-                    >
+                            <div class="form-group full">
+                                <label for="patientName">Patient Name</label>
+                                <input type="text" id="patientName"
+                                       placeholder="Enter patient name">
+                            </div>
 
-                    MRI Scan
-                    — ₹2,500
+                            <div class="form-group full">
+                                <label for="patientEmail">Email Address</label>
+                                <input type="email" id="patientEmail"
+                                       placeholder="example@gmail.com">
+                            </div>
 
-                </label>
+                            <div class="form-group">
+                                <label for="patientMobile">Mobile Number</label>
+                                <input type="tel" id="patientMobile"
+                                       placeholder="10 digit number"
+                                       maxlength="10">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="patientAge">Age</label>
+                                <input type="number" id="patientAge"
+                                       placeholder="Enter age" min="1" max="110">
+                            </div>
+
+                            <div class="form-group full">
+                                <label for="appointmentDate">
+                                    Appointment Date
+                                </label>
+                                <input type="date" id="appointmentDate">
+                            </div>
+
+                        </div>
+
+                        <button type="submit" class="btn btn-primary form-submit">
+                            Book Appointment →
+                        </button>
+
+                    </form>
+
+                    <p id="appointmentStatus" aria-live="polite"></p>
+
+                </div>
 
             </div>
 
+        </section>
 
-            <div class="bill-result">
+        <!-- EMERGENCY -->
 
-                <h3>
-                    Estimated Total Charge:
-                    ₹<span id="billTotal">0</span>
-                </h3>
+        <section class="section">
+
+            <div class="emergency">
+
+                <div>
+                    <h2>Need Emergency Assistance?</h2>
+
+                    <p>
+                        Emergency services are available 24 hours a day,
+                        7 days a week.
+                    </p>
+                </div>
+
+                <div class="emergency-number">
+                    ☎ 9876543210
+                </div>
 
             </div>
 
         </section>
-
-
-        <!-- ================= TASK 1 ================= -->
-
-        <section id="appointment">
-
-            <h2>Book Patient Appointment</h2>
-
-            <p>
-                Enter the patient details below to book an appointment.
-            </p>
-
-            <br>
-
-
-            <form id="appointmentForm">
-
-
-                <div class="form-group">
-
-                    <label>
-                        Patient Name:
-                    </label>
-
-                    <input
-                        type="text"
-                        id="patientName"
-                        placeholder="Enter patient name"
-                    >
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label>
-                        Email:
-                    </label>
-
-                    <input
-                        type="text"
-                        id="patientEmail"
-                        placeholder="example@gmail.com"
-                    >
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label>
-                        Mobile Number:
-                    </label>
-
-                    <input
-                        type="text"
-                        id="patientMobile"
-                        placeholder="Enter 10 digit mobile number"
-                    >
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label>
-                        Age:
-                    </label>
-
-                    <input
-                        type="number"
-                        id="patientAge"
-                        placeholder="Enter patient age"
-                    >
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label>
-                        Appointment Date:
-                    </label>
-
-                    <input
-                        type="date"
-                        id="appointmentDate"
-                    >
-
-                </div>
-
-
-                <button type="submit">
-                    Book Appointment
-                </button>
-
-            </form>
-
-
-            <p id="appointmentStatus"></p>
-
-        </section>
-
-
-        <!-- ================= EMERGENCY ================= -->
-
-        <section class="emergency">
-
-            <h2>Emergency Services</h2>
-
-            <p>
-                Emergency services are available 24 hours a day,
-                7 days a week.
-            </p>
-
-            <p class="emergency-number">
-                Emergency Contact: 9876543210
-            </p>
-
-        </section>
-
 
     </main>
 
-
-    <!-- ================= FOOTER ================= -->
+    <!-- FOOTER -->
 
     <footer>
 
-        <p>
-            © 2026 City Care Hospital
-        </p>
+        <div class="footer-inner">
 
-        <p>
-            Quality Healthcare for Everyone
-        </p>
+            <div>
+                <h3>✚ City Care Hospital</h3>
+
+                <p>
+                    Providing quality healthcare with compassion,
+                    modern facilities and experienced medical professionals.
+                </p>
+            </div>
+
+            <div>
+                <h4>Quick Links</h4>
+
+                <div class="footer-links">
+                    <a href="#home">Home</a>
+                    <a href="#facilities">Facilities</a>
+                    <a href="#doctors">Our Doctors</a>
+                    <a href="#departments">Departments</a>
+                </div>
+            </div>
+
+            <div>
+                <h4>Patient Services</h4>
+
+                <div class="footer-links">
+                    <a href="#billing">Bill Estimator</a>
+                    <a href="#appointment">Appointments</a>
+                    <a href="#appointment">Contact</a>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="copyright">
+            © 2026 City Care Hospital. All Rights Reserved.
+            <br>
+            Quality Healthcare for Everyone.
+        </div>
 
     </footer>
 
-
-    <!-- ================= JAVASCRIPT ================= -->
+    <!-- JAVASCRIPT -->
 
     <script>
 
+        /* DYNAMIC GREETING */
 
-        /* =========================================
-           TASK 2: DYNAMIC GREETING
-        ========================================= */
-
-        window.onload = function() {
+        function showGreeting() {
 
             let hour = new Date().getHours();
-
             let greeting = "";
 
             if (hour < 12) {
-
-                greeting =
-                    "Good Morning! Welcome to City Care Hospital.";
-
+                greeting = "Good Morning! Welcome to City Care Hospital.";
             }
-
             else if (hour < 18) {
-
-                greeting =
-                    "Good Afternoon! Welcome to City Care Hospital.";
-
+                greeting = "Good Afternoon! Welcome to City Care Hospital.";
             }
-
             else {
-
-                greeting =
-                    "Good Evening! Welcome to City Care Hospital.";
-
+                greeting = "Good Evening! Welcome to City Care Hospital.";
             }
 
-            document.getElementById(
-                "hospitalGreeting"
-            ).innerText = greeting;
+            document.getElementById("hospitalGreeting").innerText = greeting;
+        }
 
-        };
+        showGreeting();
 
 
-        /* =========================================
-           TASK 4: SHOW / HIDE CONTENT
-        ========================================= */
+        /* MOBILE NAVIGATION */
+
+        const menuToggle = document.getElementById("menuToggle");
+        const navLinks = document.getElementById("navLinks");
+
+        menuToggle.addEventListener("click", function () {
+            navLinks.classList.toggle("open");
+
+            menuToggle.innerText =
+                navLinks.classList.contains("open") ? "✕" : "☰";
+        });
+
+        document.querySelectorAll(".nav-links a").forEach(function (link) {
+            link.addEventListener("click", function () {
+                navLinks.classList.remove("open");
+                menuToggle.innerText = "☰";
+            });
+        });
+
+
+        /* SHOW / HIDE FACILITIES */
 
         function toggleHospitalInfo() {
 
-            let info =
-                document.getElementById(
-                    "moreHospitalInfo"
-                );
+            let info = document.getElementById("moreHospitalInfo");
+            let button = document.querySelector("#facilities button");
 
             if (info.style.display === "block") {
-
                 info.style.display = "none";
-
+                button.innerText = "Show Special Facilities";
             }
-
             else {
-
                 info.style.display = "block";
-
+                button.innerText = "Hide Special Facilities";
             }
-
         }
 
 
-        /* =========================================
-           TASK 5: DYNAMIC DOCTOR CONTENT
-        ========================================= */
+        /* DYNAMIC DOCTOR INFORMATION */
 
-        function changeDoctor(name, spec, time) {
+        function changeDoctor(name, spec, time, selectedButton) {
 
-            document.getElementById(
-                "docName"
-            ).innerText = name;
+            document.getElementById("docName").innerText = name;
+            document.getElementById("docSpec").innerText = spec;
+            document.getElementById("docTime").innerText = time;
 
-            document.getElementById(
-                "docSpec"
-            ).innerText =
-                "Specialization: " + spec;
+            document.querySelectorAll(".chip").forEach(function (button) {
+                button.classList.remove("active");
+            });
 
-            document.getElementById(
-                "docTime"
-            ).innerText =
-                "Timings: " + time;
-
+            selectedButton.classList.add("active");
         }
 
 
-        /* =========================================
-           TASK 3: DYNAMIC BILL CALCULATION
-        ========================================= */
+        /* DYNAMIC BILL CALCULATION */
 
         function calculateBill() {
 
             let total = 0;
 
+            const services = [
+                "chkConsult",
+                "chkBlood",
+                "chkXray",
+                "chkMRI"
+            ];
 
-            if (
-                document.getElementById(
-                    "chkConsult"
-                ).checked
-            ) {
+            services.forEach(function (id) {
 
-                total += 500;
+                let checkbox = document.getElementById(id);
 
-            }
+                if (checkbox.checked) {
+                    total += Number(checkbox.value);
+                }
 
+            });
 
-            if (
-                document.getElementById(
-                    "chkBlood"
-                ).checked
-            ) {
-
-                total += 300;
-
-            }
-
-
-            if (
-                document.getElementById(
-                    "chkXray"
-                ).checked
-            ) {
-
-                total += 700;
-
-            }
-
-
-            if (
-                document.getElementById(
-                    "chkMRI"
-                ).checked
-            ) {
-
-                total += 2500;
-
-            }
-
-
-            document.getElementById(
-                "billTotal"
-            ).innerText =
+            document.getElementById("billTotal").innerText =
                 total.toLocaleString("en-IN");
-
         }
 
 
-        /* =========================================
-           TASK 1: APPOINTMENT FORM VALIDATION
-        ========================================= */
+        /* SET MINIMUM APPOINTMENT DATE */
 
-        document
-            .getElementById("appointmentForm")
-            .addEventListener(
-                "submit",
-                function(event) {
+        const appointmentDate = document.getElementById("appointmentDate");
 
-                    event.preventDefault();
+        const today = new Date();
+        const localToday = new Date(
+            today.getTime() - today.getTimezoneOffset() * 60000
+        ).toISOString().split("T")[0];
 
-
-                    let name =
-                        document.getElementById(
-                            "patientName"
-                        ).value.trim();
+        appointmentDate.min = localToday;
 
 
-                    let email =
-                        document.getElementById(
-                            "patientEmail"
-                        ).value.trim();
+        /* APPOINTMENT FORM VALIDATION */
 
+        document.getElementById("appointmentForm").addEventListener(
+            "submit",
+            function (event) {
 
-                    let mobile =
-                        document.getElementById(
-                            "patientMobile"
-                        ).value.trim();
+                event.preventDefault();
 
+                let name = document.getElementById("patientName").value.trim();
+                let email = document.getElementById("patientEmail").value.trim();
+                let mobile = document.getElementById("patientMobile").value.trim();
+                let age = Number(document.getElementById("patientAge").value);
+                let date = appointmentDate.value;
 
-                    let age =
-                        document.getElementById(
-                            "patientAge"
-                        ).value.trim();
+                let status = document.getElementById("appointmentStatus");
 
-
-                    let date =
-                        document.getElementById(
-                            "appointmentDate"
-                        ).value;
-
-
-                    let status =
-                        document.getElementById(
-                            "appointmentStatus"
-                        );
-
-
-                    /* NAME */
-
-                    if (name === "") {
-
-                        status.innerHTML =
-                            "<span class='error'>" +
-                            "Please enter patient name." +
-                            "</span>";
-
-                        return;
-
-                    }
-
-
-                    /* EMAIL */
-
-                    if (
-                        !email.includes("@") ||
-                        !email.includes(".")
-                    ) {
-
-                        status.innerHTML =
-                            "<span class='error'>" +
-                            "Please enter a valid email address." +
-                            "</span>";
-
-                        return;
-
-                    }
-
-
-                    /* MOBILE */
-
-                    if (
-                        mobile.length !== 10 ||
-                        isNaN(mobile)
-                    ) {
-
-                        status.innerHTML =
-                            "<span class='error'>" +
-                            "Mobile number must be 10 numeric digits." +
-                            "</span>";
-
-                        return;
-
-                    }
-
-
-                    /* AGE */
-
-                    if (
-                        age < 1 ||
-                        age > 110 ||
-                        isNaN(age)
-                    ) {
-
-                        status.innerHTML =
-                            "<span class='error'>" +
-                            "Please enter a valid age." +
-                            "</span>";
-
-                        return;
-
-                    }
-
-
-                    /* DATE */
-
-                    if (date === "") {
-
-                        status.innerHTML =
-                            "<span class='error'>" +
-                            "Please select an appointment date." +
-                            "</span>";
-
-                        return;
-
-                    }
-
-
-                    /* SUCCESS */
-
-                    status.innerHTML =
-                        "<span class='success'>" +
-                        "✓ Appointment Booked Successfully!" +
-                        "</span>";
-
+                function showError(message) {
+                    status.className = "error";
+                    status.innerText = message;
                 }
-            );
+
+                if (name === "") {
+                    showError("Please enter patient name.");
+                    return;
+                }
+
+                const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+                if (!emailPattern.test(email)) {
+                    showError("Please enter a valid email address.");
+                    return;
+                }
+
+                const mobilePattern = /^[0-9]{10}$/;
+
+                if (!mobilePattern.test(mobile)) {
+                    showError("Mobile number must contain exactly 10 digits.");
+                    return;
+                }
+
+                if (!Number.isInteger(age) || age < 1 || age > 110) {
+                    showError("Please enter a valid age between 1 and 110.");
+                    return;
+                }
+
+                if (date === "") {
+                    showError("Please select an appointment date.");
+                    return;
+                }
+
+                if (date < localToday) {
+                    showError("Please select today or a future date.");
+                    return;
+                }
+
+                status.className = "success";
+
+                status.innerText =
+                    "✓ Appointment request submitted successfully!";
+
+                document.getElementById("appointmentForm").reset();
+
+            }
+        );
 
     </script>
 
-
 </body>
-
 </html>
-```
