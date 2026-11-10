@@ -1,1050 +1,1949 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#542b20">
 
-    <title>Food Corner Restaurant</title>
+    <title>Food Corner | Delicious Food & Happy Moments</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <style>
+        :root {
+            --brown: #542b20;
+            --brown-light: #75402d;
+            --orange: #f08a24;
+            --red: #d9534f;
+            --cream: #fff2e6;
+            --peach: #fff8f2;
+            --white: #ffffff;
+            --bg: #fffaf6;
+            --ink: #392820;
+            --muted: #806f65;
+            --border: #f0e2d7;
+            --success: #168b68;
+            --danger: #d94747;
+            --shadow: 0 15px 40px rgba(84, 43, 32, 0.09);
+            --radius: 20px;
+        }
 
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
 
         html {
             scroll-behavior: smooth;
+            scroll-padding-top: 100px;
         }
 
         body {
-            font-family: Arial, sans-serif;
-            background: #fff8f2;
-            color: #222;
+            font-family: "DM Sans", sans-serif;
+            background: var(--bg);
+            color: var(--ink);
             line-height: 1.6;
         }
 
-        /* ================= HEADER ================= */
+        h1, h2, h3, h4 {
+            font-family: "Manrope", sans-serif;
+            line-height: 1.25;
+        }
 
-        header {
-            background: linear-gradient(135deg, #d9534f, #f08a24);
+        button, input, select {
+            font: inherit;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* TOP BAR */
+
+        .topbar {
+            background: var(--brown);
+            color: #f8e4d7;
+            padding: 9px 0;
+            font-size: 13px;
+        }
+
+        .topbar-inner {
+            width: 92%;
+            max-width: 1160px;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .topbar strong {
             color: white;
-            text-align: center;
-            padding: 40px 20px;
         }
 
-        header h1 {
-            font-size: 42px;
-            margin-bottom: 8px;
-        }
+        /* NAVIGATION */
 
-        header p {
-            font-size: 18px;
-        }
-
-        #foodGreeting {
-            margin-top: 15px;
-            color: white;
-            font-size: 17px;
-        }
-
-        /* ================= NAVIGATION ================= */
-
-        nav {
-            background: white;
-            text-align: center;
-            padding: 15px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        .navbar {
             position: sticky;
             top: 0;
             z-index: 100;
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
         }
 
-        nav a {
-            text-decoration: none;
-            color: #d9534f;
-            font-weight: bold;
-            margin: 0 15px;
-            transition: 0.3s;
+        .nav-inner {
+            width: 92%;
+            max-width: 1160px;
+            min-height: 76px;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
         }
 
-        nav a:hover {
-            color: #f08a24;
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            color: var(--brown);
+            font-family: "Manrope", sans-serif;
+            font-weight: 800;
+            font-size: 19px;
         }
 
-        /* ================= MAIN ================= */
-
-        .container {
-            width: 90%;
-            max-width: 1100px;
-            margin: 35px auto;
-        }
-
-        .hero {
-            background: white;
-            padding: 35px;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.07);
-            margin-bottom: 30px;
-        }
-
-        .hero h2 {
-            color: #d9534f;
-            margin-bottom: 12px;
-        }
-
-        .hero p {
-            color: #555;
-            margin-bottom: 8px;
-        }
-
-        /* ================= SECTIONS ================= */
-
-        section {
-            background: white;
-            padding: 30px;
-            margin-bottom: 30px;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.06);
-        }
-
-        section h2 {
-            color: #d9534f;
-            margin-bottom: 15px;
-        }
-
-        /* ================= BUTTONS ================= */
-
-        button {
-            background: #d9534f;
+        .brand-mark {
+            width: 43px;
+            height: 43px;
+            display: grid;
+            place-items: center;
+            background: var(--red);
             color: white;
-            border: none;
-            padding: 11px 18px;
-            border-radius: 7px;
-            cursor: pointer;
-            font-size: 15px;
-            margin: 5px;
+            border-radius: 14px;
+            font-size: 24px;
+        }
+
+        .brand small {
+            display: block;
+            color: var(--muted);
+            font-family: "DM Sans", sans-serif;
+            font-size: 10px;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+        }
+
+        .nav-links a {
+            color: #725d52;
+            font-size: 14px;
+            font-weight: 700;
             transition: 0.3s;
         }
 
-        button:hover {
-            background: #b52b27;
+        .nav-links a:hover {
+            color: var(--red);
+        }
+
+        .nav-cta,
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: none;
+            border-radius: 50px;
+            padding: 12px 21px;
+            font-weight: 700;
+            transition: 0.3s;
+        }
+
+        .nav-cta,
+        .btn-primary {
+            background: var(--red);
+            color: white;
+            box-shadow: 0 8px 20px rgba(217, 83, 79, 0.2);
+        }
+
+        .nav-cta:hover,
+        .btn-primary:hover {
+            background: #bd3e39;
             transform: translateY(-2px);
         }
 
-        /* ================= CHEF STORY ================= */
-
-        .hidden-recipe {
+        .menu-toggle {
             display: none;
-            background: #fff8dc;
-            padding: 18px;
-            margin-top: 15px;
-            border-left: 4px solid #f0ad4e;
-            border-radius: 7px;
-        }
-
-        /* ================= FEATURED DISH ================= */
-
-        .dish-buttons {
-            margin: 15px 0;
-        }
-
-        .dish-box {
-            margin-top: 20px;
-            padding: 25px;
-            border: 2px dashed #d9534f;
+            border: none;
+            background: var(--cream);
+            color: var(--brown);
+            width: 43px;
+            height: 43px;
             border-radius: 12px;
-            background: #fffaf7;
+            font-size: 22px;
         }
 
-        .dish-box h3 {
-            color: #d9534f;
-            font-size: 24px;
-            margin-bottom: 8px;
-        }
+        /* HERO SECTION */
 
-        .dish-price {
-            color: #f08a24;
-            font-size: 23px;
-            font-weight: bold;
-            margin-top: 10px;
-        }
-
-        /* ================= MENU ================= */
-
-        .menu-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
+        .hero {
+            position: relative;
             overflow: hidden;
-            border-radius: 8px;
-        }
-
-        .menu-table th {
-            background: #d9534f;
+            background: linear-gradient(115deg, #542b20, #873e2d 60%, #d9534f);
             color: white;
-            padding: 14px;
-            text-align: left;
         }
 
-        .menu-table td {
-            padding: 13px;
-            border-bottom: 1px solid #eee;
+        .hero::before,
+        .hero::after {
+            content: "";
+            position: absolute;
+            border: 1px solid rgba(255, 255, 255, 0.13);
+            border-radius: 50%;
         }
 
-        .menu-table tr:nth-child(even) {
-            background: #fff8f3;
+        .hero::before {
+            width: 520px;
+            height: 520px;
+            right: -120px;
+            top: -240px;
         }
 
-        .menu-table tr:hover {
-            background: #fff0e5;
+        .hero::after {
+            width: 390px;
+            height: 390px;
+            right: -50px;
+            top: -175px;
         }
 
-        .price {
-            font-weight: bold;
-            color: #d9534f;
+        .hero-inner {
+            width: 92%;
+            max-width: 1160px;
+            min-height: 520px;
+            margin: auto;
+            padding: 75px 0;
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            align-items: center;
+            gap: 45px;
+            position: relative;
+            z-index: 1;
         }
 
-        /* ================= ORDER CALCULATOR ================= */
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            padding: 8px 14px;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 50px;
+            color: #ffddbd;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 22px;
+        }
 
-        .form-group {
+        .eyebrow span {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #ffb56b;
+        }
+
+        .hero h1 {
+            max-width: 680px;
+            font-size: clamp(40px, 5vw, 68px);
+            letter-spacing: -2px;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 em {
+            color: #ffbd78;
+            font-style: normal;
+        }
+
+        .hero-copy {
+            max-width: 570px;
+            color: #f4dfd5;
+            font-size: 17px;
+            margin-bottom: 30px;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 13px;
+            flex-wrap: wrap;
+        }
+
+        .btn-outline {
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.45);
+            background: rgba(255, 255, 255, 0.07);
+        }
+
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.17);
+        }
+
+        #foodGreeting {
+            margin-top: 20px;
+            color: #ffcf9e;
+            font-weight: 700;
+        }
+
+        .hero-panel {
+            justify-self: end;
+            width: 100%;
+            max-width: 390px;
+            padding: 28px;
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 27px;
+            backdrop-filter: blur(12px);
+        }
+
+        .panel-icon {
+            width: 62px;
+            height: 62px;
+            display: grid;
+            place-items: center;
+            border-radius: 18px;
+            background: #ffe2c4;
+            color: var(--brown);
+            font-size: 32px;
             margin-bottom: 18px;
         }
 
-        label {
-            font-weight: bold;
+        .hero-panel h3 {
+            font-size: 23px;
+            margin-bottom: 10px;
+        }
+
+        .hero-panel p {
+            color: #f4dfd5;
+            font-size: 14px;
+        }
+
+        .panel-line {
+            height: 1px;
+            background: rgba(255, 255, 255, 0.2);
+            margin: 20px 0;
+        }
+
+        .open-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+        }
+
+        .open-pill {
+            color: #ffe5c7;
+            background: rgba(255, 181, 107, 0.18);
+            padding: 5px 11px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        /* STATISTICS */
+
+        .stats-wrap {
+            width: 92%;
+            max-width: 1000px;
+            margin: -35px auto 0;
+            position: relative;
+            z-index: 3;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            background: white;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            padding: 25px 15px;
+        }
+
+        .stat {
+            text-align: center;
+            border-right: 1px solid var(--border);
+            padding: 4px 10px;
+        }
+
+        .stat:last-child {
+            border: none;
+        }
+
+        .stat strong {
             display: block;
+            color: var(--brown);
+            font: 800 29px "Manrope", sans-serif;
+        }
+
+        .stat span {
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        /* COMMON SECTIONS */
+
+        .section {
+            width: 92%;
+            max-width: 1160px;
+            margin: 90px auto;
+        }
+
+        .section-heading {
+            max-width: 650px;
+            margin-bottom: 34px;
+        }
+
+        .kicker {
+            color: var(--red);
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .section-heading h2 {
+            color: var(--brown);
+            font-size: clamp(30px, 3.5vw, 44px);
+            letter-spacing: -1px;
+            margin-bottom: 12px;
+        }
+
+        .section-heading p {
+            color: var(--muted);
+        }
+
+        /* CHEF STORY */
+
+        .story-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 22px;
+            align-items: stretch;
+        }
+
+        .story-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 28px;
+            box-shadow: 0 8px 28px rgba(84, 43, 32, 0.035);
+        }
+
+        .story-visual {
+            min-height: 270px;
+            border-radius: 20px;
+            background: linear-gradient(145deg, #ffdbb5, #fff0df);
+            display: grid;
+            place-items: center;
+            font-size: 110px;
+        }
+
+        .story-card h3 {
+            color: var(--brown);
+            font-size: 23px;
+            margin-bottom: 12px;
+        }
+
+        .story-card p {
+            color: var(--muted);
+            font-size: 15px;
+        }
+
+        .hidden-recipe {
+            display: none;
+            background: var(--cream);
+            padding: 20px;
+            margin-top: 20px;
+            border-left: 4px solid var(--orange);
+            border-radius: 10px;
+            color: var(--brown);
+        }
+
+        /* FEATURED DISH */
+
+        .dish-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 22px;
+        }
+
+        .chip {
+            background: #fff3e9;
+            color: var(--brown);
+            border: 1px solid var(--border);
+            padding: 10px 18px;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: 0.3s;
+        }
+
+        .chip.active,
+        .chip:hover {
+            background: var(--brown);
+            color: white;
+        }
+
+        .dish-box {
+            display: grid;
+            grid-template-columns: 0.8fr 1.2fr;
+            align-items: center;
+            gap: 30px;
+            background: white;
+            padding: 28px;
+            border: 1px solid var(--border);
+            border-radius: 22px;
+            box-shadow: var(--shadow);
+        }
+
+        .dish-image {
+            min-height: 230px;
+            display: grid;
+            place-items: center;
+            background: linear-gradient(145deg, #ffe3c5, #fff4e9);
+            border-radius: 18px;
+            font-size: 100px;
+        }
+
+        .dish-info h3 {
+            color: var(--brown);
+            font-size: 29px;
+            margin-bottom: 12px;
+        }
+
+        .dish-info p {
+            color: var(--muted);
+        }
+
+        .dish-price {
+            color: var(--red);
+            font-size: 27px;
+            font-weight: 800;
+            margin-top: 15px;
+        }
+
+        /* MENU */
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 20px;
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 17px;
+            transition: 0.25s;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow);
+            border-color: #edc5a6;
+        }
+
+        .menu-icon {
+            width: 60px;
+            height: 60px;
+            min-width: 60px;
+            display: grid;
+            place-items: center;
+            border-radius: 17px;
+            background: var(--cream);
+            font-size: 30px;
+        }
+
+        .menu-details {
+            flex: 1;
+        }
+
+        .menu-details h3 {
+            color: var(--brown);
+            font-size: 17px;
+            margin-bottom: 3px;
+        }
+
+        .menu-details p {
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .price {
+            color: var(--red);
+            font: 800 18px "Manrope", sans-serif;
+            white-space: nowrap;
+        }
+
+        .menu-note {
+            margin-top: 22px;
+            padding: 17px;
+            background: var(--cream);
+            color: var(--brown);
+            border-radius: 12px;
+            font-size: 13px;
+        }
+
+        /* ORDER CALCULATOR */
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 22px;
+            align-items: start;
+        }
+
+        .content-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 28px;
+            box-shadow: 0 8px 28px rgba(84, 43, 32, 0.035);
+        }
+
+        .content-card h2 {
+            color: var(--brown);
+            font-size: 25px;
+            margin-bottom: 10px;
+        }
+
+        .muted {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .form-group {
+            display: grid;
+            gap: 7px;
+            margin-top: 19px;
+        }
+
+        label {
+            color: #654d41;
+            font-weight: 700;
+            font-size: 14px;
         }
 
         input,
         select {
             width: 100%;
-            max-width: 550px;
-            padding: 11px;
-            margin-top: 6px;
-            border: 1px solid #bbb;
-            border-radius: 6px;
-            font-size: 15px;
+            border: 1px solid #eadbd0;
+            border-radius: 10px;
+            padding: 12px 13px;
+            background: #fffcf9;
+            color: var(--ink);
+            outline: none;
         }
 
         input:focus,
         select:focus {
-            outline: none;
-            border-color: #d9534f;
-            box-shadow: 0 0 5px rgba(217,83,79,0.2);
+            border-color: var(--orange);
+            box-shadow: 0 0 0 3px rgba(240, 138, 36, 0.12);
         }
 
         .total-box {
-            margin-top: 20px;
-            background: #fff4e8;
+            margin-top: 25px;
+            background: var(--brown);
+            color: white;
             padding: 20px;
-            border-left: 4px solid #f08a24;
-            border-radius: 7px;
+            border-radius: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
         }
 
-        #foodTotal {
-            color: #d9534f;
-            font-size: 26px;
+        .total-box span {
+            color: #ffd2a8;
+            font: 800 27px "Manrope", sans-serif;
         }
 
-        /* ================= BOOKING FORM ================= */
+        .total-note {
+            margin-top: 12px;
+        }
+
+        /* BOOKING FORM */
 
         .booking-info {
-            background: #fff8f3;
+            background: var(--cream);
             padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 20px;
+            border-radius: 10px;
+            margin: 18px 0;
+            color: var(--brown);
+            font-size: 14px;
         }
 
-        .error {
-            color: #d93025;
-            font-weight: bold;
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
         }
 
-        .success {
-            color: #168b36;
-            font-weight: bold;
+        .form-group.full {
+            grid-column: 1 / -1;
+        }
+
+        .form-submit {
+            width: 100%;
+            margin-top: 22px;
         }
 
         #bookingStatus {
             margin-top: 15px;
+            min-height: 24px;
+            font-weight: 700;
         }
 
-        /* ================= HOURS ================= */
+        .error {
+            color: var(--danger);
+        }
+
+        .success {
+            color: var(--success);
+        }
+
+        /* OPENING HOURS */
+
+        .hours-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
 
         .hours-box {
-            background: #fff8f3;
-            border-left: 4px solid #d9534f;
-            padding: 20px;
-            border-radius: 7px;
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 25px;
+            box-shadow: 0 8px 28px rgba(84, 43, 32, 0.035);
+        }
+
+        .hours-icon {
+            width: 52px;
+            height: 52px;
+            display: grid;
+            place-items: center;
+            background: var(--cream);
+            border-radius: 15px;
+            font-size: 25px;
+            margin-bottom: 15px;
+        }
+
+        .hours-box h3 {
+            color: var(--brown);
+            margin-bottom: 10px;
+        }
+
+        .hours-box p {
+            color: var(--muted);
+            font-size: 14px;
+            margin-top: 7px;
         }
 
         .hours-box strong {
-            color: #d9534f;
+            color: var(--red);
         }
 
-        /* ================= FOOTER ================= */
+        /* FOOTER */
 
         footer {
-            background: #542b20;
+            background: #432319;
+            color: #f1dcd0;
+            padding: 45px 0 20px;
+            margin-top: 90px;
+        }
+
+        .footer-inner {
+            width: 92%;
+            max-width: 1160px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 35px;
+            padding-bottom: 30px;
+        }
+
+        footer h3,
+        footer h4 {
             color: white;
+            margin-bottom: 13px;
+        }
+
+        footer p,
+        footer a {
+            font-size: 14px;
+            color: #dfc5b8;
+        }
+
+        .footer-links {
+            display: grid;
+            gap: 8px;
+        }
+
+        .footer-links a:hover {
+            color: #ffbd78;
+        }
+
+        .copyright {
+            width: 92%;
+            max-width: 1160px;
+            margin: auto;
+            border-top: 1px solid rgba(255, 255, 255, 0.13);
+            padding-top: 18px;
             text-align: center;
-            padding: 25px;
-            margin-top: 40px;
+            font-size: 13px;
+            color: #b99c8e;
         }
 
-        footer p {
-            margin: 5px;
-        }
+        /* RESPONSIVE DESIGN */
 
-        /* ================= RESPONSIVE ================= */
+        @media (max-width: 900px) {
+            .nav-links {
+                gap: 12px;
+            }
+
+            .nav-links a {
+                font-size: 12px;
+            }
+
+            .hero-inner {
+                grid-template-columns: 1fr 0.8fr;
+                gap: 25px;
+            }
+
+            .dish-box {
+                gap: 20px;
+            }
+        }
 
         @media (max-width: 700px) {
-
-            header h1 {
-                font-size: 32px;
+            .menu-toggle {
+                display: block;
             }
 
-            nav a {
-                display: inline-block;
-                margin: 6px 8px;
+            .nav-inner {
+                min-height: 68px;
             }
 
-            .menu-table {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 68px;
+                left: 0;
+                right: 0;
+                background: white;
+                padding: 18px 5%;
+                box-shadow: 0 15px 25px rgba(84, 43, 32, 0.1);
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0;
+            }
+
+            .nav-links.open {
+                display: flex;
+            }
+
+            .nav-links a {
+                padding: 11px 4px;
+                border-bottom: 1px solid var(--border);
                 font-size: 14px;
             }
 
-            .menu-table th,
-            .menu-table td {
-                padding: 9px;
+            .nav-cta {
+                display: none;
             }
 
+            .hero-inner {
+                grid-template-columns: 1fr;
+                padding: 60px 0 75px;
+            }
+
+            .hero-panel {
+                justify-self: start;
+                max-width: 470px;
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 18px;
+            }
+
+            .stat:nth-child(2) {
+                border: none;
+            }
+
+            .stat:nth-child(3),
+            .stat:nth-child(4) {
+                border-top: 1px solid var(--border);
+                padding-top: 17px;
+            }
+
+            .story-grid,
+            .tools-grid,
+            .hours-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .dish-box {
+                grid-template-columns: 1fr;
+            }
+
+            .dish-image {
+                min-height: 190px;
+            }
+
+            .footer-inner {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .footer-inner > div:first-child {
+                grid-column: 1 / -1;
+            }
         }
 
         @media (max-width: 500px) {
-
-            .container {
-                width: 94%;
+            .topbar-inner {
+                justify-content: center;
+                text-align: center;
             }
 
-            section,
-            .hero {
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-group.full {
+                grid-column: auto;
+            }
+
+            .section {
+                margin: 65px auto;
+            }
+
+            .content-card,
+            .story-card {
                 padding: 20px;
             }
 
-            nav a {
-                display: block;
-                margin: 8px;
+            .hero h1 {
+                font-size: 40px;
             }
 
-            .menu-table {
-                font-size: 13px;
+            .dish-info h3 {
+                font-size: 25px;
             }
 
+            .footer-inner {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-inner > div:first-child {
+                grid-column: auto;
+            }
         }
-
     </style>
-
 </head>
-
 
 <body>
 
+    <!-- TOP BAR -->
 
-    <!-- ================= HEADER ================= -->
+    <div class="topbar">
+        <div class="topbar-inner">
+            <span>📍 Fresh Food | Quality Ingredients | Great Taste</span>
+            <span>☎ Call Us: <strong>+91 9876543210</strong></span>
+        </div>
+    </div>
 
-    <header>
+    <!-- NAVIGATION -->
 
-        <h1>🍴 Food Corner</h1>
+    <nav class="navbar">
+        <div class="nav-inner">
 
-        <p>Delicious Food | Great Taste | Happy Moments</p>
+            <a href="#home" class="brand">
+                <span class="brand-mark">🍴</span>
+                <span>
+                    Food Corner
+                    <small>RESTAURANT & CAFE</small>
+                </span>
+            </a>
 
-        <!-- Task 2: Dynamic Greeting -->
+            <button class="menu-toggle" id="menuToggle" aria-label="Open navigation">
+                ☰
+            </button>
 
-        <h3 id="foodGreeting"></h3>
+            <div class="nav-links" id="navLinks">
+                <a href="#home">Home</a>
+                <a href="#special">Chef's Special</a>
+                <a href="#menu">Our Menu</a>
+                <a href="#order">Order Calculator</a>
+                <a href="#booking">Book Table</a>
+                <a href="#hours">Opening Hours</a>
+            </div>
 
-    </header>
+            <a href="#booking" class="nav-cta">Reserve a Table →</a>
 
-
-    <!-- ================= NAVIGATION ================= -->
-
-    <nav>
-
-        <a href="#home">Home</a>
-        <a href="#menu">Menu</a>
-        <a href="#special">Chef's Special</a>
-        <a href="#order">Order</a>
-        <a href="#booking">Book Table</a>
-        <a href="#hours">Hours</a>
-
+        </div>
     </nav>
 
+    <!-- HERO SECTION -->
 
-    <main class="container">
+    <header class="hero" id="home">
 
+        <div class="hero-inner">
 
-        <!-- ================= HOME ================= -->
+            <div class="hero-content">
 
-        <div class="hero" id="home">
+                <div class="eyebrow">
+                    <span></span>
+                    FRESHLY PREPARED, SERVED WITH LOVE
+                </div>
 
-            <h2>Welcome to Food Corner</h2>
+                <h1>
+                    Good Food.
+                    <em>Great Moments.</em>
+                </h1>
 
-            <p>
-                Welcome to Food Corner Restaurant.
-                We serve fresh, delicious and hygienic food
-                for our customers.
-            </p>
+                <p class="hero-copy">
+                    Welcome to Food Corner Restaurant. Discover delicious
+                    meals prepared with fresh ingredients, authentic flavours
+                    and a passion for serving unforgettable food.
+                </p>
 
-            <p>
-                Enjoy tasty meals, refreshing beverages and
-                memorable moments with your family and friends.
-            </p>
+                <div class="hero-actions">
+                    <a href="#menu" class="btn btn-primary">
+                        Explore Our Menu →
+                    </a>
+
+                    <a href="#booking" class="btn btn-outline">
+                        Book a Table
+                    </a>
+                </div>
+
+                <h3 id="foodGreeting"></h3>
+
+            </div>
+
+            <div class="hero-panel">
+
+                <div class="panel-icon">🍕</div>
+
+                <h3>Delicious Food, Happy Moments</h3>
+
+                <p>
+                    Enjoy freshly prepared pizzas, Indian specialities,
+                    burgers and refreshing beverages with family and friends.
+                </p>
+
+                <div class="panel-line"></div>
+
+                <div class="open-row">
+                    <span>Restaurant Timing</span>
+                    <span class="open-pill">Open Daily</span>
+                </div>
+
+                <div class="panel-line"></div>
+
+                <div class="open-row">
+                    <span>Kitchen Hours</span>
+                    <strong>11:30 AM - 9:30 PM</strong>
+                </div>
+
+            </div>
 
         </div>
 
+    </header>
 
-        <!-- ================= TASK 4 ================= -->
+    <!-- STATISTICS -->
 
-        <section id="special">
+    <div class="stats-wrap">
 
-            <h2>👨‍🍳 Chef's Special Story</h2>
+        <div class="stats">
 
-            <p>
-                Discover the story behind our delicious food.
-            </p>
+            <div class="stat">
+                <strong>15+</strong>
+                <span>Years of Experience</span>
+            </div>
 
-            <button onclick="toggleChefStory()">
-                Read Chef's Message
-            </button>
+            <div class="stat">
+                <strong>20+</strong>
+                <span>Delicious Dishes</span>
+            </div>
 
-            <div id="chefStory" class="hidden-recipe">
+            <div class="stat">
+                <strong>10K+</strong>
+                <span>Happy Customers</span>
+            </div>
 
+            <div class="stat">
+                <strong>7 Days</strong>
+                <span>Open Every Week</span>
+            </div>
+
+        </div>
+
+    </div>
+
+    <main>
+
+        <!-- HOME / INTRODUCTION -->
+
+        <section class="section">
+
+            <div class="section-heading">
+                <div class="kicker">Welcome to Food Corner</div>
+                <h2>Where Every Meal Becomes a Happy Memory</h2>
                 <p>
-                    Our head chef brings 15 years of culinary
-                    expertise, combining authentic Italian pizzas
-                    with traditional Indian spices to serve
-                    unforgettable meals every day!
+                    We serve fresh, delicious and hygienic food for our
+                    customers. Enjoy tasty meals, refreshing beverages and
+                    memorable moments with your family and friends.
                 </p>
+            </div>
+
+            <div class="story-grid">
+
+                <div class="story-visual">
+                    🍽️
+                </div>
+
+                <div class="story-card">
+                    <div class="kicker">Our Promise</div>
+                    <h3>Quality Food, Authentic Taste</h3>
+                    <p>
+                        At Food Corner, we believe that great food brings
+                        people together. Our menu combines popular Italian
+                        favourites with delicious Indian flavours, prepared
+                        using carefully selected ingredients.
+                    </p>
+                    <br>
+                    <a href="#menu" class="btn btn-primary">
+                        Discover Our Menu →
+                    </a>
+                </div>
 
             </div>
 
         </section>
 
+        <!-- CHEF STORY -->
 
-        <!-- ================= TASK 5 ================= -->
+        <section class="section" id="special">
 
-        <section>
+            <div class="section-heading">
+                <div class="kicker">Behind Every Delicious Dish</div>
+                <h2>Meet Our Chef</h2>
+                <p>
+                    Discover the passion, experience and creativity
+                    behind the food we serve.
+                </p>
+            </div>
 
-            <h2>⭐ Today's Featured Item</h2>
+            <div class="story-grid">
 
-            <p>
-                Click below to preview dish details.
-            </p>
+                <div class="story-card">
+
+                    <div class="feature-icon" style="font-size:30px;">👨‍🍳</div>
+
+                    <h3>Our Chef's Special Story</h3>
+
+                    <p>
+                        Our head chef brings 15 years of culinary expertise,
+                        combining authentic Italian pizzas with traditional
+                        Indian spices to create unforgettable meals.
+                    </p>
+
+                    <button class="btn btn-primary" onclick="toggleChefStory()">
+                        Read Chef's Message →
+                    </button>
+
+                    <div id="chefStory" class="hidden-recipe">
+                        <h3>A Message from Our Chef</h3>
+                        <p>
+                            Great cooking begins with fresh ingredients,
+                            creativity and passion. Every dish at Food Corner
+                            is prepared with attention to quality, flavour
+                            and customer satisfaction. We look forward to
+                            serving you something special every day!
+                        </p>
+                    </div>
+
+                </div>
+
+                <div class="story-visual">
+                    🧑‍🍳
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- FEATURED DISH -->
+
+        <section class="section">
+
+            <div class="section-heading">
+                <div class="kicker">Chef's Recommendations</div>
+                <h2>Today's Featured Dishes</h2>
+                <p>
+                    Choose a dish below to explore its ingredients,
+                    description and price.
+                </p>
+            </div>
 
             <div class="dish-buttons">
 
-                <button onclick="changeSpecial(
+                <button class="chip active" onclick="changeSpecial(
                     'Farmhouse Pizza',
-                    'Loaded with fresh veggies, mozzarella cheese & Italian herbs.',
-                    '₹250'
+                    'Loaded with fresh vegetables, mozzarella cheese and Italian herbs.',
+                    '₹250',
+                    '🍕',
+                    this
                 )">
                     🍕 Pizza
                 </button>
 
-                <button onclick="changeSpecial(
+                <button class="chip" onclick="changeSpecial(
                     'Paneer Tikka',
-                    'Marinated cottage cheese cubes grilled to perfection in tandoor.',
-                    '₹180'
+                    'Marinated cottage cheese cubes grilled to perfection in a traditional tandoor.',
+                    '₹180',
+                    '🧀',
+                    this
                 )">
                     🧀 Paneer Tikka
                 </button>
 
-                <button onclick="changeSpecial(
+                <button class="chip" onclick="changeSpecial(
                     'Crispy Veg Burger',
-                    'Crispy veg patty topped with spicy sauce and crunchy lettuce.',
-                    '₹120'
+                    'Crispy vegetable patty topped with spicy sauce and crunchy lettuce.',
+                    '₹120',
+                    '🍔',
+                    this
                 )">
                     🍔 Veg Burger
                 </button>
 
             </div>
 
-
             <div class="dish-box">
 
-                <h3 id="dishTitle">
-                    Farmhouse Pizza
-                </h3>
+                <div class="dish-image" id="dishImage">
+                    🍕
+                </div>
 
-                <p id="dishDesc">
-                    Loaded with fresh veggies,
-                    mozzarella cheese & Italian herbs.
-                </p>
+                <div class="dish-info">
 
-                <p class="dish-price" id="dishPrice">
-                    ₹250
-                </p>
+                    <div class="kicker">Today's Special</div>
 
-            </div>
+                    <h3 id="dishTitle">Farmhouse Pizza</h3>
 
-        </section>
+                    <p id="dishDesc">
+                        Loaded with fresh vegetables, mozzarella cheese
+                        and Italian herbs.
+                    </p>
 
+                    <div class="dish-price" id="dishPrice">
+                        ₹250
+                    </div>
 
-        <!-- ================= MENU ================= -->
+                    <a href="#order" class="btn btn-primary" style="margin-top:18px;">
+                        Calculate Your Order →
+                    </a>
 
-        <section id="menu">
-
-            <h2>🍽️ Our Special Menu</h2>
-
-            <table class="menu-table">
-
-                <tr>
-
-                    <th>Food Item</th>
-                    <th>Category</th>
-                    <th>Price</th>
-
-                </tr>
-
-                <tr>
-
-                    <td>Pizza</td>
-                    <td>Italian</td>
-                    <td class="price">₹250</td>
-
-                </tr>
-
-                <tr>
-
-                    <td>Paneer Tikka</td>
-                    <td>Indian</td>
-                    <td class="price">₹180</td>
-
-                </tr>
-
-                <tr>
-
-                    <td>Veg Burger</td>
-                    <td>Fast Food</td>
-                    <td class="price">₹120</td>
-
-                </tr>
-
-                <tr>
-
-                    <td>Cold Coffee</td>
-                    <td>Beverage</td>
-                    <td class="price">₹100</td>
-
-                </tr>
-
-            </table>
-
-        </section>
-
-
-        <!-- ================= TASK 3 ================= -->
-
-        <section id="order">
-
-            <h2>🧾 Quick Order Calculator</h2>
-
-            <p>
-                Select a food item and quantity to calculate
-                your estimated bill.
-            </p>
-
-            <br>
-
-
-            <div class="form-group">
-
-                <label>
-                    Select Food Item:
-                </label>
-
-                <select
-                    id="foodSelect"
-                    onchange="calculateFoodTotal()"
-                >
-
-                    <option value="0">
-                        -- Select Item --
-                    </option>
-
-                    <option value="250">
-                        Pizza - ₹250
-                    </option>
-
-                    <option value="180">
-                        Paneer Tikka - ₹180
-                    </option>
-
-                    <option value="120">
-                        Veg Burger - ₹120
-                    </option>
-
-                    <option value="100">
-                        Cold Coffee - ₹100
-                    </option>
-
-                </select>
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label>
-                    Quantity:
-                </label>
-
-                <input
-                    type="number"
-                    id="foodQty"
-                    min="1"
-                    value="1"
-                    oninput="calculateFoodTotal()"
-                >
-
-            </div>
-
-
-            <div class="total-box">
-
-                <h3>
-                    Total Bill:
-                    ₹<span id="foodTotal">0</span>
-                </h3>
+                </div>
 
             </div>
 
         </section>
 
+        <!-- MENU -->
 
-        <!-- ================= TASK 1 ================= -->
+        <section class="section" id="menu">
 
-        <section id="booking">
-
-            <h2>📅 Table Booking Form</h2>
-
-            <div class="booking-info">
-
+            <div class="section-heading">
+                <div class="kicker">Freshly Prepared for You</div>
+                <h2>Explore Our Special Menu</h2>
                 <p>
-                    Reserve a table by entering your details below.
-                    All fields are required.
+                    Enjoy our selection of popular food items,
+                    prepared with fresh ingredients and great taste.
                 </p>
+            </div>
+
+            <div class="menu-grid">
+
+                <div class="menu-item">
+                    <div class="menu-icon">🍕</div>
+                    <div class="menu-details">
+                        <h3>Farmhouse Pizza</h3>
+                        <p>Italian | Fresh vegetables and cheese</p>
+                    </div>
+                    <div class="price">₹250</div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="menu-icon">🧀</div>
+                    <div class="menu-details">
+                        <h3>Paneer Tikka</h3>
+                        <p>Indian | Tandoori marinated paneer</p>
+                    </div>
+                    <div class="price">₹180</div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="menu-icon">🍔</div>
+                    <div class="menu-details">
+                        <h3>Veg Burger</h3>
+                        <p>Fast Food | Crispy vegetable patty</p>
+                    </div>
+                    <div class="price">₹120</div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="menu-icon">☕</div>
+                    <div class="menu-details">
+                        <h3>Cold Coffee</h3>
+                        <p>Beverage | Chilled creamy coffee</p>
+                    </div>
+                    <div class="price">₹100</div>
+                </div>
 
             </div>
 
-
-            <form id="bookingForm">
-
-
-                <div class="form-group">
-
-                    <label>
-                        Customer Name:
-                    </label>
-
-                    <input
-                        type="text"
-                        id="custName"
-                        placeholder="Enter your name"
-                    >
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label>
-                        Email:
-                    </label>
-
-                    <input
-                        type="text"
-                        id="custEmail"
-                        placeholder="example@gmail.com"
-                    >
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label>
-                        Mobile Number:
-                    </label>
-
-                    <input
-                        type="text"
-                        id="custMobile"
-                        placeholder="Enter 10 digit mobile number"
-                    >
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label>
-                        Number of Guests:
-                    </label>
-
-                    <input
-                        type="number"
-                        id="guestCount"
-                        min="1"
-                        max="20"
-                        placeholder="1 - 20"
-                    >
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label>
-                        Booking Date & Time:
-                    </label>
-
-                    <input
-                        type="datetime-local"
-                        id="bookingDateTime"
-                    >
-
-                </div>
-
-
-                <button type="submit">
-                    Book Table
-                </button>
-
-            </form>
-
-
-            <p id="bookingStatus"></p>
-
-        </section>
-
-
-        <!-- ================= OPENING HOURS ================= -->
-
-        <section id="hours">
-
-            <h2>🕒 Opening Hours</h2>
-
-            <div class="hours-box">
-
-                <p>
-                    <strong>Monday - Sunday:</strong>
-                    11:00 AM to 10:00 PM
-                </p>
-
-                <p>
-                    <strong>Kitchen:</strong>
-                    11:30 AM to 9:30 PM
-                </p>
-
+            <div class="menu-note">
+                <strong>Note:</strong> All prices are sample prices
+                for this restaurant website practical.
             </div>
 
         </section>
 
+        <!-- ORDER CALCULATOR -->
+
+        <section class="section" id="order">
+
+            <div class="section-heading">
+                <div class="kicker">Quick Order Calculator</div>
+                <h2>Calculate Your Food Bill</h2>
+                <p>
+                    Select your favourite food item and quantity
+                    to calculate the estimated total amount.
+                </p>
+            </div>
+
+            <div class="tools-grid">
+
+                <div class="content-card">
+
+                    <h2>🧾 Order Details</h2>
+
+                    <p class="muted">
+                        Select an item and enter the required quantity.
+                    </p>
+
+                    <div class="form-group">
+
+                        <label for="foodSelect">Select Food Item</label>
+
+                        <select id="foodSelect" onchange="calculateFoodTotal()">
+
+                            <option value="0">-- Select Item --</option>
+                            <option value="250">Pizza - ₹250</option>
+                            <option value="180">Paneer Tikka - ₹180</option>
+                            <option value="120">Veg Burger - ₹120</option>
+                            <option value="100">Cold Coffee - ₹100</option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="foodQty">Quantity</label>
+
+                        <input
+                            type="number"
+                            id="foodQty"
+                            min="1"
+                            max="99"
+                            value="1"
+                            oninput="calculateFoodTotal()"
+                        >
+
+                    </div>
+
+                    <div class="total-box">
+                        <div>
+                            <strong>Estimated Total</strong>
+                            <p style="font-size:12px;color:#e8c7b5;">
+                                Your calculated food bill
+                            </p>
+                        </div>
+
+                        <span>₹<span id="foodTotal">0</span></span>
+                    </div>
+
+                    <p class="muted total-note">
+                        *The calculator uses sample menu prices.
+                    </p>
+
+                </div>
+
+                <div class="content-card">
+
+                    <h2>🍴 Why Choose Food Corner?</h2>
+
+                    <p class="muted">
+                        We focus on serving delicious food and
+                        creating a comfortable dining experience.
+                    </p>
+
+                    <div class="service-list">
+
+                        <div class="menu-item">
+                            <div class="menu-icon">🥬</div>
+                            <div class="menu-details">
+                                <h3>Fresh Ingredients</h3>
+                                <p>Carefully selected ingredients</p>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="menu-icon">👨‍🍳</div>
+                            <div class="menu-details">
+                                <h3>Experienced Chef</h3>
+                                <p>Passion for great food</p>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="menu-icon">✨</div>
+                            <div class="menu-details">
+                                <h3>Hygienic Preparation</h3>
+                                <p>Focus on quality and cleanliness</p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- TABLE BOOKING -->
+
+        <section class="section" id="booking">
+
+            <div class="section-heading">
+                <div class="kicker">Reserve Your Experience</div>
+                <h2>Book Your Table</h2>
+                <p>
+                    Planning a meal with family or friends?
+                    Reserve your table by submitting the form below.
+                </p>
+            </div>
+
+            <div class="tools-grid">
+
+                <div class="content-card">
+
+                    <h2>📅 Table Reservation</h2>
+
+                    <p class="muted">
+                        Enter your details to request a table reservation.
+                    </p>
+
+                    <div class="booking-info">
+                        All fields are required. Please provide
+                        accurate contact information.
+                    </div>
+
+                    <form id="bookingForm">
+
+                        <div class="form-grid">
+
+                            <div class="form-group full">
+                                <label for="custName">Customer Name</label>
+                                <input
+                                    type="text"
+                                    id="custName"
+                                    placeholder="Enter your name"
+                                    required
+                                >
+                            </div>
+
+                            <div class="form-group full">
+                                <label for="custEmail">Email Address</label>
+                                <input
+                                    type="email"
+                                    id="custEmail"
+                                    placeholder="example@gmail.com"
+                                    required
+                                >
+                            </div>
+
+                            <div class="form-group">
+                                <label for="custMobile">Mobile Number</label>
+                                <input
+                                    type="tel"
+                                    id="custMobile"
+                                    placeholder="10 digit number"
+                                    maxlength="10"
+                                    required
+                                >
+                            </div>
+
+                            <div class="form-group">
+                                <label for="guestCount">Number of Guests</label>
+                                <input
+                                    type="number"
+                                    id="guestCount"
+                                    min="1"
+                                    max="20"
+                                    placeholder="1 - 20"
+                                    required
+                                >
+                            </div>
+
+                            <div class="form-group full">
+                                <label for="bookingDateTime">Booking Date & Time</label>
+                                <input
+                                    type="datetime-local"
+                                    id="bookingDateTime"
+                                    required
+                                >
+                            </div>
+
+                        </div>
+
+                        <button type="submit" class="btn btn-primary form-submit">
+                            Confirm Table Booking →
+                        </button>
+
+                    </form>
+
+                    <p id="bookingStatus" aria-live="polite"></p>
+
+                </div>
+
+                <div class="content-card">
+
+                    <h2>🍽️ Plan Your Visit</h2>
+
+                    <p class="muted">
+                        Enjoy your favourite meals in a welcoming
+                        atmosphere with family and friends.
+                    </p>
+
+                    <div class="story-visual" style="margin-top:22px;min-height:210px;">
+                        🥗
+                    </div>
+
+                    <div class="booking-info" style="margin-top:20px;">
+                        <strong>Reservation Information</strong>
+                        <p style="margin-top:7px;">
+                            Restaurant: Food Corner
+                        </p>
+                        <p>
+                            Guests: 1 to 20 people
+                        </p>
+                        <p>
+                            Booking: Available all week
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- OPENING HOURS -->
+
+        <section class="section" id="hours">
+
+            <div class="section-heading">
+                <div class="kicker">Visit Us</div>
+                <h2>Restaurant Opening Hours</h2>
+                <p>
+                    We welcome you throughout the week.
+                    Plan your visit during our restaurant hours.
+                </p>
+            </div>
+
+            <div class="hours-grid">
+
+                <div class="hours-box">
+
+                    <div class="hours-icon">🕒</div>
+
+                    <h3>Restaurant Hours</h3>
+
+                    <p>
+                        <strong>Monday - Sunday:</strong>
+                        11:00 AM to 10:00 PM
+                    </p>
+
+                    <p>
+                        <strong>Availability:</strong>
+                        Open Every Day
+                    </p>
+
+                </div>
+
+                <div class="hours-box">
+
+                    <div class="hours-icon">🍳</div>
+
+                    <h3>Kitchen Hours</h3>
+
+                    <p>
+                        <strong>Monday - Sunday:</strong>
+                        11:30 AM to 9:30 PM
+                    </p>
+
+                    <p>
+                        <strong>Food Preparation:</strong>
+                        Freshly Prepared Daily
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
 
     </main>
 
-
-    <!-- ================= FOOTER ================= -->
+    <!-- FOOTER -->
 
     <footer>
 
-        <p>
-            © 2026 Food Corner Restaurant
-        </p>
+        <div class="footer-inner">
 
-        <p>
-            Delicious Food | Great Taste | Happy Moments
-        </p>
+            <div>
+                <h3>🍴 Food Corner Restaurant</h3>
+
+                <p>
+                    Serving delicious food with fresh ingredients,
+                    authentic flavours and a passion for great dining.
+                    Delicious Food | Great Taste | Happy Moments.
+                </p>
+            </div>
+
+            <div>
+                <h4>Quick Links</h4>
+
+                <div class="footer-links">
+                    <a href="#home">Home</a>
+                    <a href="#special">Chef's Special</a>
+                    <a href="#menu">Our Menu</a>
+                    <a href="#hours">Opening Hours</a>
+                </div>
+            </div>
+
+            <div>
+                <h4>Customer Services</h4>
+
+                <div class="footer-links">
+                    <a href="#order">Order Calculator</a>
+                    <a href="#booking">Book a Table</a>
+                    <a href="#menu">Food Menu</a>
+                    <a href="#home">About Us</a>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="copyright">
+            © 2026 Food Corner Restaurant. All Rights Reserved.
+            <br>
+            Delicious Food | Great Taste | Happy Moments.
+        </div>
 
     </footer>
 
-
-    <!-- ================= JAVASCRIPT ================= -->
+    <!-- JAVASCRIPT -->
 
     <script>
 
+        /* DYNAMIC GREETING */
 
-        /* =========================================
-           TASK 2: DYNAMIC GREETING
-        ========================================= */
-
-        window.onload = function() {
+        function showGreeting() {
 
             let hour = new Date().getHours();
-
             let greeting = "";
 
             if (hour < 12) {
-
                 greeting =
                     "Good Morning! Enjoy fresh breakfast at Food Corner.";
-
             }
-
             else if (hour < 18) {
-
                 greeting =
                     "Good Afternoon! Drop by for our special Lunch menu.";
-
             }
-
             else {
-
                 greeting =
                     "Good Evening! Welcome to Food Corner Dinner Time.";
-
             }
 
-            document.getElementById(
-                "foodGreeting"
-            ).innerText = greeting;
+            document.getElementById("foodGreeting").innerText = greeting;
+        }
 
-        };
+        showGreeting();
 
 
-        /* =========================================
-           TASK 4: SHOW / HIDE CONTENT
-        ========================================= */
+        /* MOBILE NAVIGATION */
+
+        const menuToggle = document.getElementById("menuToggle");
+        const navLinks = document.getElementById("navLinks");
+
+        menuToggle.addEventListener("click", function () {
+
+            navLinks.classList.toggle("open");
+
+            const isOpen = navLinks.classList.contains("open");
+
+            menuToggle.innerText = isOpen ? "✕" : "☰";
+            menuToggle.setAttribute(
+                "aria-label",
+                isOpen ? "Close navigation" : "Open navigation"
+            );
+
+        });
+
+        document.querySelectorAll(".nav-links a").forEach(function (link) {
+
+            link.addEventListener("click", function () {
+
+                navLinks.classList.remove("open");
+                menuToggle.innerText = "☰";
+                menuToggle.setAttribute("aria-label", "Open navigation");
+
+            });
+
+        });
+
+
+        /* SHOW / HIDE CHEF STORY */
 
         function toggleChefStory() {
 
-            let story =
-                document.getElementById(
-                    "chefStory"
-                );
+            const story = document.getElementById("chefStory");
+            const button = document.querySelector("#special button");
 
             if (story.style.display === "block") {
 
                 story.style.display = "none";
+                button.innerText = "Read Chef's Message →";
 
             }
-
             else {
 
                 story.style.display = "block";
+                button.innerText = "Hide Chef's Message ↑";
 
             }
 
         }
 
 
-        /* =========================================
-           TASK 5: DYNAMIC DISH CONTENT
-        ========================================= */
+        /* DYNAMIC FEATURED DISH */
 
-        function changeSpecial(
-            title,
-            desc,
-            price
-        ) {
+        function changeSpecial(title, desc, price, image, selectedButton) {
 
-            document.getElementById(
-                "dishTitle"
-            ).innerText = title;
+            document.getElementById("dishTitle").innerText = title;
+            document.getElementById("dishDesc").innerText = desc;
+            document.getElementById("dishPrice").innerText = price;
+            document.getElementById("dishImage").innerText = image;
 
-            document.getElementById(
-                "dishDesc"
-            ).innerText = desc;
+            document.querySelectorAll(".dish-buttons .chip").forEach(
+                function(button) {
+                    button.classList.remove("active");
+                }
+            );
 
-            document.getElementById(
-                "dishPrice"
-            ).innerText = price;
+            selectedButton.classList.add("active");
 
         }
 
 
-        /* =========================================
-           TASK 3: DYNAMIC PRICE CALCULATION
-        ========================================= */
+        /* DYNAMIC FOOD BILL CALCULATION */
 
         function calculateFoodTotal() {
 
-            let price =
-                parseInt(
-                    document.getElementById(
-                        "foodSelect"
-                    ).value
-                ) || 0;
+            let price = Number(
+                document.getElementById("foodSelect").value
+            ) || 0;
 
+            let qty = Number(
+                document.getElementById("foodQty").value
+            ) || 0;
 
-            let qty =
-                parseInt(
-                    document.getElementById(
-                        "foodQty"
-                    ).value
-                ) || 0;
+            if (qty < 1 || qty > 99) {
+                document.getElementById("foodTotal").innerText = "0";
+                return;
+            }
 
+            let total = price * qty;
 
-            let total =
-                price * qty;
-
-
-            document.getElementById(
-                "foodTotal"
-            ).innerText =
+            document.getElementById("foodTotal").innerText =
                 total.toLocaleString("en-IN");
 
         }
 
 
-        /* =========================================
-           TASK 1: TABLE BOOKING VALIDATION
-        ========================================= */
+        /* SET MINIMUM BOOKING DATE AND TIME */
 
-        document
-            .getElementById("bookingForm")
-            .addEventListener(
-                "submit",
-                function(event) {
+        const bookingDateTime = document.getElementById("bookingDateTime");
 
-                    event.preventDefault();
+        function getLocalDateTime() {
 
+            const now = new Date();
 
-                    let name =
-                        document.getElementById(
-                            "custName"
-                        ).value.trim();
-
-
-                    let email =
-                        document.getElementById(
-                            "custEmail"
-                        ).value.trim();
-
-
-                    let mobile =
-                        document.getElementById(
-                            "custMobile"
-                        ).value.trim();
-
-
-                    let guests =
-                        document.getElementById(
-                            "guestCount"
-                        ).value;
-
-
-                    let dateTime =
-                        document.getElementById(
-                            "bookingDateTime"
-                        ).value;
-
-
-                    let status =
-                        document.getElementById(
-                            "bookingStatus"
-                        );
-
-
-                    /* NAME */
-
-                    if (name === "") {
-
-                        status.innerHTML =
-                            "<span class='error'>" +
-                            "Please enter customer name." +
-                            "</span>";
-
-                        return;
-
-                    }
-
-
-                    /* EMAIL */
-
-                    if (
-                        !email.includes("@") ||
-                        !email.includes(".")
-                    ) {
-
-                        status.innerHTML =
-                            "<span class='error'>" +
-                            "Please enter a valid email address." +
-                            "</span>";
-
-                        return;
-
-                    }
-
-
-                    /* MOBILE */
-
-                    if (
-                        mobile.length !== 10 ||
-                        isNaN(mobile)
-                    ) {
-
-                        status.innerHTML =
-                            "<span class='error'>" +
-                            "Mobile number must be 10 digits." +
-                            "</span>";
-
-                        return;
-
-                    }
-
-
-                    /* GUEST COUNT */
-
-                    if (
-                        guests < 1 ||
-                        guests > 20 ||
-                        isNaN(guests)
-                    ) {
-
-                        status.innerHTML =
-                            "<span class='error'>" +
-                            "Guests count must be between 1 and 20." +
-                            "</span>";
-
-                        return;
-
-                    }
-
-
-                    /* DATE AND TIME */
-
-                    if (dateTime === "") {
-
-                        status.innerHTML =
-                            "<span class='error'>" +
-                            "Please select date and time for booking." +
-                            "</span>";
-
-                        return;
-
-                    }
-
-
-                    /* SUCCESS */
-
-                    status.innerHTML =
-                        "<span class='success'>" +
-                        "✓ Table Reserved Successfully!" +
-                        "</span>";
-
-                }
+            const localDate = new Date(
+                now.getTime() - now.getTimezoneOffset() * 60000
             );
 
-    </script>
+            return localDate.toISOString().slice(0, 16);
 
+        }
+
+        bookingDateTime.min = getLocalDateTime();
+
+
+        /* TABLE BOOKING FORM VALIDATION */
+
+        document.getElementById("bookingForm").addEventListener(
+            "submit",
+            function(event) {
+
+                event.preventDefault();
+
+                const name = document.getElementById("custName").value.trim();
+
+                const email = document.getElementById("custEmail").value.trim();
+
+                const mobile = document.getElementById("custMobile").value.trim();
+
+                const guests = Number(
+                    document.getElementById("guestCount").value
+                );
+
+                const dateTime = bookingDateTime.value;
+
+                const status = document.getElementById("bookingStatus");
+
+
+                function showError(message) {
+
+                    status.className = "error";
+                    status.innerText = message;
+
+                }
+
+
+                /* NAME VALIDATION */
+
+                if (name === "") {
+
+                    showError("Please enter customer name.");
+                    return;
+
+                }
+
+
+                /* EMAIL VALIDATION */
+
+                const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+                if (!emailPattern.test(email)) {
+
+                    showError("Please enter a valid email address.");
+                    return;
+
+                }
+
+
+                /* MOBILE VALIDATION */
+
+                const mobilePattern = /^[0-9]{10}$/;
+
+                if (!mobilePattern.test(mobile)) {
+
+                    showError("Mobile number must contain exactly 10 digits.");
+                    return;
+
+                }
+
+
+                /* GUEST COUNT VALIDATION */
+
+                if (!Number.isInteger(guests) || guests < 1 || guests > 20) {
+
+                    showError("Number of guests must be between 1 and 20.");
+                    return;
+
+                }
+
+
+                /* DATE AND TIME VALIDATION */
+
+                if (dateTime === "") {
+
+                    showError("Please select booking date and time.");
+                    return;
+
+                }
+
+                if (new Date(dateTime) < new Date()) {
+
+                    showError("Please select a current or future date and time.");
+                    return;
+
+                }
+
+
+                /* SUCCESS MESSAGE */
+
+                status.className = "success";
+
+                status.innerText =
+                    "✓ Table reserved successfully! Thank you for choosing Food Corner.";
+
+                document.getElementById("bookingForm").reset();
+
+                bookingDateTime.min = getLocalDateTime();
+
+            }
+        );
+
+    </script>
 
 </body>
 
 </html>
-```
