@@ -1,921 +1,373 @@
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>ABC Online Book Store</title>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
     <style>
-        :root {
-            --primary: #385723;
-            --primary-dark: #263d19;
-            --primary-light: #6b8e23;
-            --accent: #b5d58d;
-            --bg: #f5f7f2;
-            --surface: #ffffff;
-            --text: #263323;
-            --muted: #687466;
-            --border: #e1e8dc;
-            --success: #237447;
-            --danger: #c62828;
-            --shadow: 0 12px 35px rgba(38, 61, 25, 0.09);
-            --radius: 18px;
-        }
-
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
-        }
-
-        html {
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
             scroll-behavior: smooth;
-            scroll-padding-top: 100px;
         }
 
         body {
-            font-family: "DM Sans", sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            line-height: 1.7;
+            background: #f5f7f2;
+            color: #333;
         }
 
-        button, input, select, textarea {
-            font: inherit;
-        }
-
-        button {
-            cursor: pointer;
-        }
-
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
-
-        .container {
-            width: min(1140px, 90%);
-            margin: auto;
-        }
-
-        /* Top Bar */
-
-        .topbar {
-            background: var(--primary-dark);
-            color: #e7f0df;
-            padding: 9px 0;
-            font-size: 13px;
-        }
-
-        .topbar-inner {
+        header {
+            background: #263d19;
+            color: white;
+            padding: 18px 8%;
             display: flex;
             justify-content: space-between;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-
-        /* Navigation */
-
-        .navbar {
+            align-items: center;
             position: sticky;
             top: 0;
-            z-index: 1000;
-            background: rgba(255, 255, 255, 0.96);
-            backdrop-filter: blur(14px);
-            border-bottom: 1px solid var(--border);
+            z-index: 100;
         }
 
-        .nav-inner {
-            min-height: 76px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 25px;
+        header h2 {
+            color: #b5d58d;
         }
 
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-family: "Manrope", sans-serif;
-            font-weight: 800;
-            font-size: 19px;
-            color: var(--primary-dark);
-            white-space: nowrap;
-        }
-
-        .brand-icon {
-            width: 43px;
-            height: 43px;
-            display: grid;
-            place-items: center;
-            border-radius: 13px;
-            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+        nav a {
             color: white;
-            font-size: 22px;
+            text-decoration: none;
+            margin-left: 18px;
+            font-size: 14px;
         }
 
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 22px;
+        nav a:hover {
+            color: #b5d58d;
         }
-
-        .nav-links a {
-            color: #485444;
-            font-size: 13px;
-            font-weight: 700;
-            transition: color 0.2s;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary-light);
-        }
-
-        .menu-toggle {
-            display: none;
-            width: 43px;
-            height: 43px;
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            background: white;
-            color: var(--primary);
-            font-size: 23px;
-        }
-
-        /* Hero Section */
 
         .hero {
-            position: relative;
-            overflow: hidden;
-            padding: 82px 0 105px;
-            background:
-                radial-gradient(circle at 85% 15%, rgba(255,255,255,0.15), transparent 28%),
-                linear-gradient(125deg, #263d19, #385723 55%, #6b8e23);
+            min-height: 440px;
+            background: linear-gradient(rgba(20,40,15,.8), rgba(20,40,15,.8)),
+            url("https://images.unsplash.com/photo-1507842217343-583bb7270b66");
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
             color: white;
-        }
-
-        .hero::before {
-            content: "";
-            position: absolute;
-            width: 350px;
-            height: 350px;
-            border: 1px solid rgba(255,255,255,0.12);
-            border-radius: 50%;
-            right: -100px;
-            bottom: -180px;
-        }
-
-        .hero-grid {
-            position: relative;
-            display: grid;
-            grid-template-columns: 1.3fr 0.7fr;
-            align-items: center;
-            gap: 55px;
-        }
-
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 7px 14px;
-            border: 1px solid rgba(255,255,255,0.25);
-            background: rgba(255,255,255,0.1);
-            border-radius: 50px;
-            font-size: 12px;
-            font-weight: 700;
-            margin-bottom: 22px;
+            padding: 30px;
         }
 
         .hero h1 {
-            font-family: "Manrope", sans-serif;
-            font-size: clamp(35px, 5vw, 58px);
-            line-height: 1.15;
-            letter-spacing: -1.8px;
-            margin-bottom: 20px;
-            max-width: 680px;
+            font-size: 45px;
+            margin-bottom: 15px;
+        }
+
+        .hero span {
+            color: #b5d58d;
         }
 
         .hero p {
-            color: #e3ecd9;
-            max-width: 590px;
-            font-size: 16px;
-            margin-bottom: 27px;
-        }
-
-        #bookGreeting {
-            font-weight: 700;
-            color: #e9f5d9;
-            margin-bottom: 20px;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
+            margin-bottom: 22px;
+            font-size: 17px;
         }
 
         .btn {
             display: inline-block;
-            padding: 13px 21px;
-            border-radius: 10px;
-            font-weight: 700;
-            font-size: 14px;
-            border: 1px solid transparent;
-            transition: 0.2s;
-        }
-
-        .btn-primary {
-            background: white;
-            color: var(--primary-dark);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-        }
-
-        .btn-outline {
+            background: #6b8e23;
             color: white;
-            border-color: rgba(255,255,255,0.4);
-            background: rgba(255,255,255,0.08);
+            padding: 12px 22px;
+            border: none;
+            border-radius: 7px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: .3s;
         }
 
-        .btn-outline:hover {
-            background: rgba(255,255,255,0.17);
+        .btn:hover {
+            background: #263d19;
+            transform: translateY(-3px);
         }
 
-        .hero-panel {
-            padding: 27px;
-            border: 1px solid rgba(255,255,255,0.22);
-            background: rgba(255,255,255,0.12);
-            backdrop-filter: blur(15px);
-            border-radius: 22px;
-        }
-
-        .hero-panel small {
-            color: #dce9d0;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1.2px;
-        }
-
-        .hero-panel h2 {
-            font-family: "Manrope", sans-serif;
-            font-size: 25px;
-            margin: 12px 0;
-        }
-
-        .hero-panel p {
-            font-size: 14px;
-            margin-bottom: 18px;
-        }
-
-        .panel-item {
-            display: flex;
-            justify-content: space-between;
-            gap: 12px;
-            padding: 12px 0;
-            border-top: 1px solid rgba(255,255,255,0.2);
-            font-size: 13px;
-        }
-
-        .panel-item strong {
-            color: #f0f7e9;
-        }
-
-        /* Statistics */
-
-        .stats-wrap {
-            position: relative;
-            z-index: 2;
-            margin-top: -43px;
-        }
-
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            background: white;
-            border-radius: 17px;
-            box-shadow: var(--shadow);
-            border: 1px solid var(--border);
-            overflow: hidden;
-        }
-
-        .stat {
-            padding: 23px 15px;
+        section {
+            padding: 55px 8%;
             text-align: center;
-            border-right: 1px solid var(--border);
         }
 
-        .stat:last-child {
-            border-right: none;
-        }
-
-        .stat h3 {
-            color: var(--primary);
-            font-family: "Manrope", sans-serif;
-            font-size: 24px;
-        }
-
-        .stat p {
-            font-size: 12px;
-            color: var(--muted);
-            font-weight: 600;
-        }
-
-        /* Common Sections */
-
-        .section {
-            padding: 75px 0;
-        }
-
-        .section-heading {
-            max-width: 650px;
-            margin-bottom: 30px;
-        }
-
-        .kicker {
-            display: inline-block;
-            color: var(--primary-light);
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            font-size: 11px;
-            font-weight: 800;
-            margin-bottom: 10px;
-        }
-
-        .section-heading h2 {
-            font-family: "Manrope", sans-serif;
-            font-size: clamp(27px, 4vw, 37px);
-            color: var(--primary-dark);
-            line-height: 1.25;
+        .heading {
+            color: #263d19;
+            font-size: 30px;
             margin-bottom: 12px;
         }
 
-        .section-heading p {
-            color: var(--muted);
-            font-size: 15px;
+        .line {
+            width: 65px;
+            height: 4px;
+            background: #8baa55;
+            margin: 0 auto 30px;
+            border-radius: 5px;
         }
 
-        /* Offer Section */
-
-        .offer-section {
-            padding-top: 55px;
-        }
-
-        .offer-box {
+        .about {
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            gap: 25px;
-            padding: 30px;
-            background: linear-gradient(120deg, #edf5e7, #f8fbf5);
-            border: 1px solid #d5e5c9;
-            border-radius: var(--radius);
+            gap: 35px;
+            text-align: left;
         }
 
-        .offer-box h3 {
-            color: var(--primary-dark);
-            font-family: "Manrope", sans-serif;
-            font-size: 23px;
-            margin-bottom: 7px;
-        }
-
-        .offer-box p {
-            color: var(--muted);
-            font-size: 14px;
-        }
-
-        .offer-highlight {
-            color: var(--primary);
-            font-weight: 800;
-        }
-
-        .hidden-offer {
-            display: none;
-            margin-top: 17px;
-            padding: 16px;
-            background: white;
-            border: 1px dashed var(--primary-light);
+        .about img {
+            width: 45%;
             border-radius: 12px;
-            color: var(--primary-dark);
+            box-shadow: 0 5px 15px #ccc;
         }
 
-        /* Buttons */
-
-        .action-btn {
-            display: inline-block;
-            border: none;
-            background: var(--primary);
-            color: white;
-            padding: 12px 19px;
-            border-radius: 9px;
-            font-size: 13px;
-            font-weight: 700;
-            transition: 0.2s;
+        .about-text {
+            flex: 1;
         }
 
-        .action-btn:hover {
-            background: var(--primary-dark);
-            transform: translateY(-2px);
+        .about-text h2 {
+            color: #263d19;
+            margin-bottom: 15px;
         }
 
-        /* Featured Books */
+        .about-text p {
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
 
-        .book-buttons {
+        .features, .book-container, .categories {
             display: flex;
-            gap: 10px;
+            justify-content: center;
             flex-wrap: wrap;
-            margin-bottom: 22px;
-        }
-
-        .book-buttons button {
-            border: 1px solid var(--border);
-            background: white;
-            color: var(--primary-dark);
-            padding: 11px 16px;
-            border-radius: 9px;
-            font-size: 13px;
-            font-weight: 700;
-            transition: 0.2s;
-        }
-
-        .book-buttons button:hover,
-        .book-buttons button.active {
-            background: var(--primary);
-            color: white;
-            border-color: var(--primary);
-        }
-
-        .featured-book {
-            display: grid;
-            grid-template-columns: 90px 1fr;
             gap: 22px;
-            align-items: center;
-            padding: 28px;
+        }
+
+        .feature, .book-card, .category {
             background: white;
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
+            padding: 22px;
+            width: 220px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px #ddd;
+            transition: .3s;
         }
 
-        .book-cover {
-            width: 90px;
-            height: 120px;
-            border-radius: 8px;
-            background: linear-gradient(145deg, #385723, #8baa55);
-            display: grid;
-            place-items: center;
-            color: white;
-            font-size: 38px;
-            box-shadow: 5px 7px 12px rgba(0,0,0,0.15);
+        .feature:hover, .book-card:hover, .category:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 8px 18px #ccc;
         }
 
-        .featured-book h3 {
-            font-family: "Manrope", sans-serif;
-            color: var(--primary-dark);
-            font-size: 23px;
+        .feature h3, .category h3 {
+            color: #385723;
+            margin: 12px 0;
+        }
+
+        .feature .emoji, .category .emoji {
+            font-size: 35px;
+        }
+
+        .books {
+            background: #edf4e7;
+        }
+
+        .book-card {
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .book-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .book-info {
+            padding: 18px;
+        }
+
+        .book-info h3 {
+            color: #263d19;
             margin-bottom: 8px;
         }
 
-        .book-meta {
-            color: var(--muted);
-            font-size: 13px;
-            margin-bottom: 9px;
-        }
-
-        .book-price {
-            color: var(--primary);
-            font-weight: 800;
-        }
-
-        .featured-book p:last-child {
-            color: var(--muted);
+        .book-info p {
+            color: #666;
+            margin-bottom: 10px;
             font-size: 14px;
         }
 
-        /* Categories */
-
-        .category-grid {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 15px;
+        .price {
+            color: #6b8e23;
+            font-size: 20px;
+            font-weight: bold;
         }
 
-        .category-card {
-            background: white;
-            border: 1px solid var(--border);
-            padding: 23px 14px;
-            text-align: center;
+        .offer {
+            background: #263d19;
+            color: white;
+            padding: 35px;
             border-radius: 15px;
-            transition: 0.25s;
         }
 
-        .category-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow);
-            border-color: #b7d39f;
+        .offer h2 {
+            color: #b5d58d;
+            margin-bottom: 12px;
         }
 
-        .category-icon {
-            width: 48px;
-            height: 48px;
-            display: grid;
-            place-items: center;
-            margin: 0 auto 12px;
-            background: #edf5e7;
-            color: var(--primary);
-            border-radius: 14px;
-            font-size: 22px;
+        .offer p {
+            margin-bottom: 15px;
         }
 
-        .category-card h3 {
-            color: var(--primary-dark);
-            font-size: 14px;
+        .hidden {
+            display: none;
+            margin-top: 15px;
+            color: #b5d58d;
         }
 
-        /* Table */
+        .featured {
+            background: white;
+            max-width: 650px;
+            margin: auto;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px #ddd;
+        }
 
-        .table-wrap {
+        .featured h3 {
+            color: #385723;
+            margin-bottom: 10px;
+        }
+
+        .featured button {
+            margin: 5px;
+        }
+
+        .table-box {
             overflow-x: auto;
             background: white;
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px #ddd;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
-            min-width: 500px;
+            min-width: 450px;
         }
 
         th {
-            background: var(--primary-dark);
+            background: #263d19;
             color: white;
-            padding: 16px;
-            text-align: left;
-            font-size: 13px;
         }
 
-        td {
-            padding: 15px 16px;
-            border-bottom: 1px solid var(--border);
-            color: #53604e;
-            font-size: 14px;
+        th, td {
+            padding: 15px;
+            border-bottom: 1px solid #ddd;
         }
 
-        tr:last-child td {
-            border-bottom: none;
+        tr:nth-child(even) {
+            background: #edf4e7;
         }
 
-        tbody tr:nth-child(even) {
-            background: #f7faf5;
-        }
-
-        tbody tr:hover {
-            background: #eef5e9;
-        }
-
-        /* Calculator and Forms */
-
-        .two-column {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 25px;
-            align-items: start;
-        }
-
-        .form-card {
+        .form-box {
+            max-width: 500px;
+            margin: auto;
             background: white;
             padding: 28px;
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-        }
-
-        .form-card h3 {
-            font-family: "Manrope", sans-serif;
-            font-size: 21px;
-            color: var(--primary-dark);
-            margin-bottom: 7px;
-        }
-
-        .form-card > p {
-            color: var(--muted);
-            font-size: 13px;
-            margin-bottom: 22px;
-        }
-
-        .form-group {
-            margin-bottom: 17px;
-        }
-
-        .form-group label {
-            display: block;
-            color: #34432f;
-            font-size: 13px;
-            font-weight: 700;
-            margin-bottom: 6px;
-        }
-
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 12px 13px;
-            border: 1px solid #d9e1d3;
-            border-radius: 9px;
-            background: #fbfcfa;
-            color: var(--text);
-            font-size: 14px;
-            outline: none;
-            transition: 0.2s;
-        }
-
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            border-color: var(--primary-light);
-            box-shadow: 0 0 0 3px rgba(107,142,35,0.1);
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 105px;
-        }
-
-        .checkbox-row {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: var(--muted);
-            font-size: 13px;
-            font-weight: 600;
-        }
-
-        .checkbox-row input {
-            width: 17px;
-            height: 17px;
-            accent-color: var(--primary);
-        }
-
-        .total-box {
-            margin-top: 20px;
-            padding: 18px;
-            background: #edf5e7;
             border-radius: 12px;
-            border: 1px solid #d4e5c8;
+            box-shadow: 0 4px 15px #ddd;
+            text-align: left;
         }
 
-        .total-box p {
-            color: var(--muted);
-            font-size: 12px;
-            font-weight: 700;
+        .form-box h3 {
+            color: #263d19;
+            margin-bottom: 15px;
         }
 
-        .total-box h3 {
-            color: var(--primary);
-            font-size: 27px;
-            margin-top: 3px;
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 9px 0;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            outline: none;
         }
 
-        .error {
-            color: var(--danger);
-            font-size: 13px;
-            font-weight: 700;
+        input:focus, select:focus, textarea:focus {
+            border-color: #6b8e23;
+        }
+
+        #total {
+            color: #385723;
+            margin-top: 18px;
+        }
+
+        #message {
             margin-top: 15px;
+            color: green;
+            font-weight: bold;
         }
 
-        .success {
-            color: var(--success);
-            font-size: 13px;
-            font-weight: 700;
-            margin-top: 15px;
+        .contact {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
         }
-
-        /* Contact */
 
         .contact-card {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-            background: linear-gradient(120deg, #263d19, #385723);
-            color: white;
-            padding: 35px;
-            border-radius: 20px;
-        }
-
-        .contact-card h2 {
-            font-family: "Manrope", sans-serif;
-            font-size: 28px;
-            margin-bottom: 12px;
-        }
-
-        .contact-card p {
-            color: #e0ebd7;
-            font-size: 14px;
-            margin-bottom: 8px;
-        }
-
-        .contact-details {
+            background: white;
+            width: 230px;
             padding: 22px;
-            background: rgba(255,255,255,0.1);
-            border: 1px solid rgba(255,255,255,0.15);
-            border-radius: 14px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px #ddd;
         }
 
-        .contact-details p {
-            margin-bottom: 12px;
+        .contact-card h3 {
+            color: #385723;
+            margin-bottom: 10px;
         }
-
-        /* Footer */
 
         footer {
             background: #1e3015;
             color: white;
-            padding: 35px 0 20px;
-            margin-top: 40px;
-        }
-
-        .footer-content {
-            display: flex;
-            justify-content: space-between;
-            gap: 25px;
-            flex-wrap: wrap;
-            padding-bottom: 25px;
-        }
-
-        .footer-content h3 {
-            font-family: "Manrope", sans-serif;
-            margin-bottom: 8px;
-        }
-
-        .footer-content p {
-            color: #cbd9c1;
-            font-size: 13px;
-        }
-
-        .footer-bottom {
-            border-top: 1px solid rgba(255,255,255,0.15);
-            padding-top: 18px;
             text-align: center;
-            color: #cbd9c1;
-            font-size: 12px;
+            padding: 25px;
         }
 
-        /* Responsive Design */
-
-        @media (max-width: 950px) {
-            .nav-links {
-                gap: 13px;
-            }
-
-            .nav-links a {
-                font-size: 12px;
-            }
-
-            .category-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-
-            .hero-grid {
-                gap: 30px;
-            }
+        footer h2 {
+            color: #b5d58d;
+            margin-bottom: 10px;
         }
 
-        @media (max-width: 750px) {
-            .menu-toggle {
-                display: block;
-            }
-
-            .nav-inner {
-                min-height: 70px;
-            }
-
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 70px;
-                left: 0;
-                width: 100%;
-                padding: 18px 5%;
-                background: white;
-                border-bottom: 1px solid var(--border);
-                box-shadow: 0 12px 20px rgba(0,0,0,0.06);
+        @media(max-width: 750px) {
+            header {
                 flex-direction: column;
-                align-items: flex-start;
-                gap: 17px;
+                gap: 15px;
             }
 
-            .nav-links.show {
-                display: flex;
-            }
-
-            .hero {
-                padding: 60px 0 85px;
-            }
-
-            .hero-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .hero-panel {
-                max-width: 500px;
-            }
-
-            .stats {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .stat:nth-child(2) {
-                border-right: none;
-            }
-
-            .stat:nth-child(-n+2) {
-                border-bottom: 1px solid var(--border);
-            }
-
-            .two-column {
-                grid-template-columns: 1fr;
-            }
-
-            .contact-card {
-                grid-template-columns: 1fr;
-            }
-
-            .offer-box {
-                align-items: flex-start;
-                flex-direction: column;
-            }
-        }
-
-        @media (max-width: 500px) {
-            .container {
-                width: 92%;
-            }
-
-            .topbar-inner {
-                justify-content: center;
+            nav {
                 text-align: center;
             }
 
-            .brand {
-                font-size: 16px;
-            }
-
-            .brand-icon {
-                width: 39px;
-                height: 39px;
+            nav a {
+                display: inline-block;
+                margin: 5px;
             }
 
             .hero h1 {
-                font-size: 36px;
+                font-size: 34px;
             }
 
-            .hero p {
-                font-size: 14px;
-            }
-
-            .hero-buttons {
+            .about {
                 flex-direction: column;
-                align-items: stretch;
-            }
-
-            .btn {
                 text-align: center;
             }
 
-            .section {
-                padding: 55px 0;
-            }
-
-            .category-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .featured-book {
-                grid-template-columns: 1fr;
-            }
-
-            .book-cover {
-                width: 75px;
-                height: 100px;
-            }
-
-            .form-card {
-                padding: 20px;
-            }
-
-            .contact-card {
-                padding: 24px;
+            .about img {
+                width: 100%;
             }
         }
     </style>
@@ -923,765 +375,395 @@
 
 <body>
 
-    <!-- Top Bar -->
-    <div class="topbar">
-        <div class="container topbar-inner">
-            <span>📚 ABC Online Book Store</span>
-            <span>Your Online Destination for Books</span>
-        </div>
-    </div>
-
     <!-- Navigation -->
-    <nav class="navbar">
-        <div class="container nav-inner">
-
-            <a href="#home" class="brand">
-                <span class="brand-icon">📖</span>
-                <span>ABC Book Store</span>
-            </a>
-
-            <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false">
-                ☰
-            </button>
-
-            <div class="nav-links" id="navLinks">
-                <a href="#home">Home</a>
-                <a href="#books">Featured Books</a>
-                <a href="#categories">Categories</a>
-                <a href="#offers">Offers</a>
-                <a href="#popular">Popular Books</a>
-                <a href="#calculator">Calculator</a>
-                <a href="#contact">Contact</a>
-            </div>
-
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <header class="hero" id="home">
-        <div class="container hero-grid">
-
-            <div>
-                <div class="hero-badge">
-                    ✦ Explore. Read. Learn.
-                </div>
-
-                <h1>Discover Your Next Favourite Book.</h1>
-
-                <p>
-                    Explore a wide collection of books from programming,
-                    computer science, business, fiction and education.
-                    Find knowledge, inspiration and new ideas in every book.
-                </p>
-
-                <h3 id="bookGreeting"></h3>
-
-                <div class="hero-buttons">
-                    <a href="#books" class="btn btn-primary">Explore Books →</a>
-                    <a href="#categories" class="btn btn-outline">View Categories</a>
-                </div>
-            </div>
-
-            <div class="hero-panel">
-                <small>Welcome to ABC Book Store</small>
-
-                <h2>Read More. Learn More. Grow More.</h2>
-
-                <p>
-                    Your online destination for discovering useful
-                    books and expanding your knowledge.
-                </p>
-
-                <div class="panel-item">
-                    <span>Available Categories</span>
-                    <strong>05</strong>
-                </div>
-
-                <div class="panel-item">
-                    <span>Featured Books</span>
-                    <strong>03</strong>
-                </div>
-
-                <div class="panel-item">
-                    <span>Store Experience</span>
-                    <strong>Online</strong>
-                </div>
-            </div>
-
-        </div>
+    <header>
+        <h2>📚 ABC Book Store</h2>
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#books">Books</a>
+            <a href="#categories">Categories</a>
+            <a href="#order">Order</a>
+            <a href="#contact">Contact</a>
+        </nav>
     </header>
 
-    <!-- Statistics -->
-    <div class="container stats-wrap">
-        <div class="stats">
-
-            <div class="stat">
-                <h3>05</h3>
-                <p>Book Categories</p>
-            </div>
-
-            <div class="stat">
-                <h3>03</h3>
-                <p>Featured Books</p>
-            </div>
-
-            <div class="stat">
-                <h3>₹450</h3>
-                <p>Starting Price</p>
-            </div>
-
-            <div class="stat">
-                <h3>2026</h3>
-                <p>Reading & Learning</p>
-            </div>
-
+    <!-- Home Section -->
+    <div class="hero" id="home">
+        <div>
+            <h1>Welcome To <span>ABC Book Store</span></h1>
+            <p>Discover Books, Explore Knowledge and Build Your Future.</p>
+            <h3 id="greeting"></h3><br>
+            <a href="#books" class="btn">Explore Books</a>
         </div>
     </div>
 
-    <main>
+    <!-- About Section -->
+    <section id="about">
+        <div class="about">
+            <img src="https://images.unsplash.com/photo-1507842217343-583bb7270b66">
 
-        <!-- Offers -->
-        <section class="section offer-section" id="offers">
-            <div class="container">
+            <div class="about-text">
+                <h2>About Our Book Store</h2>
+                <p>
+                    ABC Online Book Store provides a wide collection
+                    of books for students, readers and professionals.
+                    We offer quality books at affordable prices.
+                </p>
+                <p>
+                    Our aim is to make reading easy and accessible
+                    for everyone through our online book store.
+                </p>
+                <a href="#books" class="btn">Explore Collection</a>
+            </div>
+        </div>
+    </section>
 
-                <div class="section-heading">
-                    <span class="kicker">Special Benefits</span>
-                    <h2>Special Book Offers</h2>
-                    <p>
-                        Save more while building your personal library.
-                        Explore our current special offer.
-                    </p>
-                </div>
+    <!-- Features -->
+    <section>
+        <h2 class="heading">Why Choose Us?</h2>
+        <div class="line"></div>
 
-                <div class="offer-box">
+        <div class="features">
+            <div class="feature">
+                <div class="emoji">📚</div>
+                <h3>Wide Collection</h3>
+                <p>Books for every interest and subject.</p>
+            </div>
 
-                    <div>
-                        <span class="kicker">Limited Offer</span>
-                        <h3>Get 20% Discount on Selected Books</h3>
-                        <p>
-                            Use the special coupon code at checkout
-                            on orders above ₹500.
-                        </p>
+            <div class="feature">
+                <div class="emoji">💰</div>
+                <h3>Best Prices</h3>
+                <p>Quality books at affordable prices.</p>
+            </div>
 
-                        <div id="offerDetails" class="hidden-offer">
-                            <p>
-                                Use Coupon Code:
-                                <strong>READ2026</strong>
-                                to claim 20% discount on eligible orders
-                                above ₹500.
-                            </p>
-                        </div>
-                    </div>
+            <div class="feature">
+                <div class="emoji">🚚</div>
+                <h3>Fast Delivery</h3>
+                <p>Convenient delivery service.</p>
+            </div>
 
-                    <button class="action-btn" id="offerButton" onclick="toggleOffer()">
-                        View Offer Terms
-                    </button>
+            <div class="feature">
+                <div class="emoji">⭐</div>
+                <h3>Quality Books</h3>
+                <p>Useful books for better learning.</p>
+            </div>
+        </div>
+    </section>
 
+    <!-- Books Section -->
+    <section class="books" id="books">
+        <h2 class="heading">Our Popular Books</h2>
+        <div class="line"></div>
+
+        <div class="book-container">
+            <div class="book-card">
+                <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794">
+                <div class="book-info">
+                    <h3>Python Programming</h3>
+                    <p>Learn Python from basic to advanced.</p>
+                    <div class="price">₹450</div>
                 </div>
             </div>
-        </section>
 
-        <!-- Featured Books -->
-        <section class="section" id="books">
-            <div class="container">
-
-                <div class="section-heading">
-                    <span class="kicker">Our Collection</span>
-                    <h2>Featured Book Preview</h2>
-                    <p>
-                        Select a book to explore its author, price
-                        and description.
-                    </p>
-                </div>
-
-                <div class="book-buttons">
-                    <button class="active" onclick="changeBook('Python Programming', 'John Smith', 450, 'Learn basics to advanced Python syntax with real-world examples.', this)">
-                        Python Programming
-                    </button>
-
-                    <button onclick="changeBook('Web Technology', 'David Brown', 500, 'Covers HTML5, CSS3, JavaScript, and Modern Web Frameworks.', this)">
-                        Web Technology
-                    </button>
-
-                    <button onclick="changeBook('Database Management', 'Robert Lee', 550, 'Master SQL queries, normalization, and relational databases.', this)">
-                        Database Management
-                    </button>
-                </div>
-
-                <div class="featured-book">
-
-                    <div class="book-cover">📘</div>
-
-                    <div>
-                        <h3 id="bookTitle">Python Programming</h3>
-
-                        <p class="book-meta">
-                            <strong>Author:</strong>
-                            <span id="bookAuthor">John Smith</span>
-                            &nbsp; | &nbsp;
-                            <strong>Price:</strong>
-                            <span class="book-price" id="bookPrice">₹450</span>
-                        </p>
-
-                        <p id="bookDesc">
-                            Learn basics to advanced Python syntax
-                            with real-world examples.
-                        </p>
-                    </div>
-
-                </div>
-
-            </div>
-        </section>
-
-        <!-- Categories -->
-        <section class="section" id="categories">
-            <div class="container">
-
-                <div class="section-heading">
-                    <span class="kicker">Explore More</span>
-                    <h2>Browse Book Categories</h2>
-                    <p>
-                        Discover books according to your interests
-                        and learning goals.
-                    </p>
-                </div>
-
-                <div class="category-grid">
-
-                    <div class="category-card">
-                        <div class="category-icon">💻</div>
-                        <h3>Programming</h3>
-                    </div>
-
-                    <div class="category-card">
-                        <div class="category-icon">🖥️</div>
-                        <h3>Computer Science</h3>
-                    </div>
-
-                    <div class="category-card">
-                        <div class="category-icon">📊</div>
-                        <h3>Business</h3>
-                    </div>
-
-                    <div class="category-card">
-                        <div class="category-icon">📚</div>
-                        <h3>Fiction</h3>
-                    </div>
-
-                    <div class="category-card">
-                        <div class="category-icon">🎓</div>
-                        <h3>Competitive Exams</h3>
-                    </div>
-
+            <div class="book-card">
+                <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c">
+                <div class="book-info">
+                    <h3>Web Technology</h3>
+                    <p>Learn HTML, CSS and JavaScript.</p>
+                    <div class="price">₹500</div>
                 </div>
             </div>
-        </section>
 
-        <!-- Popular Books -->
-        <section class="section" id="popular">
-            <div class="container">
-
-                <div class="section-heading">
-                    <span class="kicker">Reader's Choice</span>
-                    <h2>Popular Books</h2>
-                    <p>
-                        Explore some of the popular books available
-                        in our online store.
-                    </p>
-                </div>
-
-                <div class="table-wrap">
-                    <table>
-
-                        <thead>
-                            <tr>
-                                <th>Book Name</th>
-                                <th>Author</th>
-                                <th>Price</th>
-                            </tr>
-                        </thead>
-
-                        <tbody>
-                            <tr>
-                                <td>Python Programming</td>
-                                <td>John Smith</td>
-                                <td>₹450</td>
-                            </tr>
-
-                            <tr>
-                                <td>Web Technology</td>
-                                <td>David Brown</td>
-                                <td>₹500</td>
-                            </tr>
-
-                            <tr>
-                                <td>Database Management</td>
-                                <td>Robert Lee</td>
-                                <td>₹550</td>
-                            </tr>
-                        </tbody>
-
-                    </table>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- Calculator -->
-        <section class="section" id="calculator">
-            <div class="container">
-
-                <div class="section-heading">
-                    <span class="kicker">Quick Calculation</span>
-                    <h2>Order Price Calculator</h2>
-                    <p>
-                        Select your book, enter the quantity and
-                        calculate the total payable amount.
-                    </p>
-                </div>
-
-                <div class="two-column">
-
-                    <div class="form-card">
-                        <h3>Calculate Your Order</h3>
-                        <p>Choose your book and delivery preference.</p>
-
-                        <div class="form-group">
-                            <label for="bookSelect">Select Book</label>
-
-                            <select id="bookSelect" onchange="calculateBookTotal()">
-                                <option value="0">-- Select Book --</option>
-                                <option value="450">Python Programming - ₹450</option>
-                                <option value="500">Web Technology - ₹500</option>
-                                <option value="550">Database Management - ₹550</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="bookQty">Quantity</label>
-
-                            <input
-                                type="number"
-                                id="bookQty"
-                                min="1"
-                                step="1"
-                                value="1"
-                                oninput="calculateBookTotal()"
-                            >
-                        </div>
-
-                        <label class="checkbox-row">
-                            <input
-                                type="checkbox"
-                                id="expressShipping"
-                                onchange="calculateBookTotal()"
-                            >
-                            Add Express Delivery (₹50)
-                        </label>
-
-                        <div class="total-box">
-                            <p>TOTAL PAYABLE AMOUNT</p>
-                            <h3>₹<span id="bookTotal">0</span></h3>
-                        </div>
-
-                    </div>
-
-                    <div class="form-card">
-                        <h3>How It Works</h3>
-                        <p>Calculate your book order in three simple steps.</p>
-
-                        <div class="form-group">
-                            <h4 style="color:var(--primary);">01. Select Your Book</h4>
-                            <p style="font-size:14px;color:var(--muted);">
-                                Choose a book from the available options.
-                            </p>
-                        </div>
-
-                        <div class="form-group">
-                            <h4 style="color:var(--primary);">02. Enter Quantity</h4>
-                            <p style="font-size:14px;color:var(--muted);">
-                                Enter how many copies you want to order.
-                            </p>
-                        </div>
-
-                        <div class="form-group">
-                            <h4 style="color:var(--primary);">03. Calculate Total</h4>
-                            <p style="font-size:14px;color:var(--muted);">
-                                The total amount updates automatically,
-                                including express delivery if selected.
-                            </p>
-                        </div>
-
-                    </div>
-
+            <div class="book-card">
+                <img src="https://images.unsplash.com/photo-1543002588-bfa74002ed7e">
+                <div class="book-info">
+                    <h3>Database Management</h3>
+                    <p>Understand SQL and databases.</p>
+                    <div class="price">₹550</div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Order Registration Form -->
-        <section class="section" id="order">
-            <div class="container">
+    <!-- Categories -->
+    <section id="categories">
+        <h2 class="heading">Book Categories</h2>
+        <div class="line"></div>
 
-                <div class="section-heading">
-                    <span class="kicker">Place Your Order</span>
-                    <h2>Book Order / Registration Form</h2>
-                    <p>
-                        Enter your details to complete the order
-                        registration process.
-                    </p>
-                </div>
-
-                <div class="form-card">
-
-                    <h3>Customer Information</h3>
-                    <p>Please provide correct details for delivery.</p>
-
-                    <form id="orderForm" novalidate>
-
-                        <div class="two-column">
-
-                            <div class="form-group">
-                                <label for="custName">Full Name</label>
-                                <input
-                                    type="text"
-                                    id="custName"
-                                    placeholder="Enter your full name"
-                                    required
-                                >
-                            </div>
-
-                            <div class="form-group">
-                                <label for="custEmail">Email Address</label>
-                                <input
-                                    type="email"
-                                    id="custEmail"
-                                    placeholder="example@gmail.com"
-                                    required
-                                >
-                            </div>
-
-                            <div class="form-group">
-                                <label for="custMobile">Mobile Number</label>
-                                <input
-                                    type="tel"
-                                    id="custMobile"
-                                    maxlength="10"
-                                    placeholder="Enter 10-digit mobile number"
-                                    required
-                                >
-                            </div>
-
-                            <div class="form-group">
-                                <label for="custPincode">Delivery Pincode</label>
-                                <input
-                                    type="text"
-                                    id="custPincode"
-                                    maxlength="6"
-                                    placeholder="Enter 6-digit pincode"
-                                    required
-                                >
-                            </div>
-
-                        </div>
-
-                        <div class="form-group">
-                            <label for="custAddress">Delivery Address</label>
-                            <textarea
-                                id="custAddress"
-                                rows="4"
-                                placeholder="Enter your complete delivery address"
-                                required
-                            ></textarea>
-                        </div>
-
-                        <button type="submit" class="action-btn">
-                            Place Order →
-                        </button>
-
-                        <p id="orderStatus" role="status" aria-live="polite"></p>
-
-                    </form>
-
-                </div>
+        <div class="categories">
+            <div class="category">
+                <div class="emoji">💻</div>
+                <h3>Programming</h3>
             </div>
-        </section>
 
-        <!-- Contact -->
-        <section class="section" id="contact">
-            <div class="container">
-
-                <div class="contact-card">
-
-                    <div>
-                        <span class="kicker" style="color:#c8e3a9;">Get In Touch</span>
-                        <h2>Contact ABC Online Book Store</h2>
-
-                        <p>
-                            Have questions about books or your order?
-                            Contact us using the information provided.
-                        </p>
-
-                        <p>
-                            We are here to help you discover your
-                            next favourite book.
-                        </p>
-                    </div>
-
-                    <div class="contact-details">
-                        <p><strong>📚 Store:</strong> ABC Online Book Store</p>
-                        <p><strong>✉️ Email:</strong> support@abconlinebookstore.com</p>
-                        <p><strong>📞 Phone:</strong> +91 98765 43210</p>
-                        <p><strong>🕒 Working Hours:</strong> Monday - Saturday</p>
-                        <p><strong>⏰ Timing:</strong> 9:00 AM - 7:00 PM</p>
-                    </div>
-
-                </div>
-
+            <div class="category">
+                <div class="emoji">🖥️</div>
+                <h3>Computer Science</h3>
             </div>
-        </section>
 
-    </main>
+            <div class="category">
+                <div class="emoji">📊</div>
+                <h3>Business</h3>
+            </div>
+
+            <div class="category">
+                <div class="emoji">📖</div>
+                <h3>Fiction</h3>
+            </div>
+
+            <div class="category">
+                <div class="emoji">🎓</div>
+                <h3>Education</h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- Special Offer -->
+    <section id="offers">
+        <div class="offer">
+            <h2>Special Book Offer!</h2>
+            <p>Get 20% discount on selected books.</p>
+            <button class="btn" onclick="showOffer()">View Offer</button>
+            <p class="hidden" id="offerText">
+                Use Coupon Code READ2026 on eligible orders above ₹500.
+            </p>
+        </div>
+    </section>
+
+    <!-- Featured Book -->
+    <section>
+        <h2 class="heading">Featured Book Details</h2>
+        <div class="line"></div>
+
+        <div class="featured">
+            <h3 id="bookTitle">Python Programming</h3>
+            <p id="bookAuthor">Author: John Smith</p>
+            <p id="bookDesc">Learn Python with simple examples.</p>
+            <h3 id="bookPrice">Price: ₹450</h3>
+
+            <button class="btn" onclick="changeBook(1)">Book 1</button>
+            <button class="btn" onclick="changeBook(2)">Book 2</button>
+            <button class="btn" onclick="changeBook(3)">Book 3</button>
+        </div>
+    </section>
+
+    <!-- Book Table -->
+    <section>
+        <h2 class="heading">Book Price List</h2>
+        <div class="line"></div>
+
+        <div class="table-box">
+            <table>
+                <tr>
+                    <th>Book Name</th>
+                    <th>Author</th>
+                    <th>Price</th>
+                </tr>
+
+                <tr>
+                    <td>Python Programming</td>
+                    <td>John Smith</td>
+                    <td>₹450</td>
+                </tr>
+
+                <tr>
+                    <td>Web Technology</td>
+                    <td>David Brown</td>
+                    <td>₹500</td>
+                </tr>
+
+                <tr>
+                    <td>Database Management</td>
+                    <td>Robert Lee</td>
+                    <td>₹550</td>
+                </tr>
+            </table>
+        </div>
+    </section>
+
+    <!-- Calculator -->
+    <section>
+        <h2 class="heading">Book Price Calculator</h2>
+        <div class="line"></div>
+
+        <div class="form-box">
+            <h3>Calculate Your Bill</h3>
+
+            <select id="book" onchange="calculateBill()">
+                <option value="0">Select Your Book</option>
+                <option value="450">Python Programming - ₹450</option>
+                <option value="500">Web Technology - ₹500</option>
+                <option value="550">Database Management - ₹550</option>
+            </select>
+
+            <input type="number" id="quantity"
+                   min="1" value="1" placeholder="Enter Quantity">
+
+            <label>
+                <input type="checkbox" id="delivery" style="width:auto">
+                Express Delivery (+₹50)
+            </label>
+
+            <br><br>
+            <button class="btn" onclick="calculateBill()">Calculate Total</button>
+            <h3 id="total">Total Amount: ₹0</h3>
+        </div>
+    </section>
+
+    <!-- Order Form -->
+    <section id="order" style="background:#edf4e7;">
+        <h2 class="heading">Book Your Order</h2>
+        <div class="line"></div>
+
+        <div class="form-box">
+            <h3>Customer Details</h3>
+
+            <form onsubmit="placeOrder(event)">
+                <input type="text" id="name"
+                       placeholder="Enter Your Name" required>
+
+                <input type="email" id="email"
+                       placeholder="Enter Your Email" required>
+
+                <input type="tel" id="mobile"
+                       placeholder="Enter 10 Digit Mobile Number"
+                       pattern="[0-9]{10}" required>
+
+                <input type="text" id="pincode"
+                       placeholder="Enter 6 Digit Pincode"
+                       pattern="[0-9]{6}" required>
+
+                <textarea id="address"
+                          placeholder="Enter Your Address"
+                          minlength="10" required></textarea>
+
+                <button type="submit" class="btn">Place Order</button>
+            </form>
+
+            <p id="message"></p>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+        <h2 class="heading">Contact Us</h2>
+        <div class="line"></div>
+
+        <div class="contact">
+            <div class="contact-card">
+                <h3>📍 Address</h3>
+                <p>ABC Book Store, Main Market</p>
+            </div>
+
+            <div class="contact-card">
+                <h3>📞 Phone</h3>
+                <p>+91 9876543210</p>
+            </div>
+
+            <div class="contact-card">
+                <h3>✉ Email</h3>
+                <p>support@abcbookstore.com</p>
+            </div>
+        </div>
+    </section>
 
     <!-- Footer -->
     <footer>
-        <div class="container">
-
-            <div class="footer-content">
-
-                <div>
-                    <h3>📖 ABC Online Book Store</h3>
-                    <p>Your Online Destination for Books.</p>
-                </div>
-
-                <div>
-                    <h3>Explore</h3>
-                    <p>Books | Categories | Special Offers</p>
-                </div>
-
-                <div>
-                    <h3>Our Motto</h3>
-                    <p>Read More. Learn More. Grow More.</p>
-                </div>
-
-            </div>
-
-            <div class="footer-bottom">
-                <p>© 2026 ABC Online Book Store. All Rights Reserved.</p>
-            </div>
-
-        </div>
+        <h2>📚 ABC Online Book Store</h2>
+        <p>Read More, Learn More, Grow More.</p>
+        <p>Monday - Saturday | 9 AM - 7 PM</p>
+        <p>© 2026 ABC Book Store. All Rights Reserved.</p>
     </footer>
 
     <script>
-
-        // Dynamic Greeting
-
-        window.onload = function () {
-
+        // Welcome Greeting
+        window.onload = function() {
             let hour = new Date().getHours();
-            let greeting = "";
 
             if (hour < 12) {
-                greeting = "Good Morning! Start your day with a great book.";
+                document.getElementById("greeting").innerText =
+                    "Good Morning! Happy Reading.";
             }
             else if (hour < 18) {
-                greeting = "Good Afternoon! Welcome to ABC Online Book Store.";
+                document.getElementById("greeting").innerText =
+                    "Good Afternoon! Welcome Readers.";
             }
             else {
-                greeting = "Good Evening! Perfect time for night reading.";
+                document.getElementById("greeting").innerText =
+                    "Good Evening! Enjoy Your Reading.";
             }
-
-            document.getElementById("bookGreeting").innerText = greeting;
-
-            calculateBookTotal();
         };
 
+        // Special Offer
+        function showOffer() {
+            let offer = document.getElementById("offerText");
 
-        // Mobile Navigation
-
-        const menuToggle = document.getElementById("menuToggle");
-        const navLinks = document.getElementById("navLinks");
-
-        menuToggle.addEventListener("click", function () {
-
-            navLinks.classList.toggle("show");
-
-            let isOpen = navLinks.classList.contains("show");
-
-            menuToggle.setAttribute("aria-expanded", isOpen);
-            menuToggle.innerText = isOpen ? "✕" : "☰";
-        });
-
-        document.querySelectorAll(".nav-links a").forEach(function (link) {
-
-            link.addEventListener("click", function () {
-
-                navLinks.classList.remove("show");
-                menuToggle.setAttribute("aria-expanded", "false");
-                menuToggle.innerText = "☰";
-
-            });
-
-        });
-
-
-        // Show / Hide Offer Details
-
-        function toggleOffer() {
-
-            let offer = document.getElementById("offerDetails");
-            let button = document.getElementById("offerButton");
-
-            if (offer.style.display === "block") {
-
-                offer.style.display = "none";
-                button.innerText = "View Offer Terms";
-
-            }
-            else {
-
-                offer.style.display = "block";
-                button.innerText = "Hide Offer Terms";
-
-            }
-
+            offer.style.display =
+                offer.style.display === "block" ? "none" : "block";
         }
 
+        // Featured Book
+        function changeBook(num) {
+            let books = [
+                ["Python Programming", "John Smith",
+                 "Learn Python with simple examples.", 450],
+                ["Web Technology", "David Brown",
+                 "Learn HTML, CSS and JavaScript.", 500],
+                ["Database Management", "Robert Lee",
+                 "Understand SQL and databases.", 550]
+            ];
 
-        // Dynamic Featured Book
+            let book = books[num - 1];
 
-        function changeBook(title, author, price, desc, button) {
-
-            document.getElementById("bookTitle").innerText = title;
-            document.getElementById("bookAuthor").innerText = author;
-
+            document.getElementById("bookTitle").innerText = book[0];
+            document.getElementById("bookAuthor").innerText =
+                "Author: " + book[1];
+            document.getElementById("bookDesc").innerText = book[2];
             document.getElementById("bookPrice").innerText =
-                "₹" + Number(price).toLocaleString("en-IN");
-
-            document.getElementById("bookDesc").innerText = desc;
-
-            document.querySelectorAll(".book-buttons button").forEach(function (btn) {
-                btn.classList.remove("active");
-            });
-
-            button.classList.add("active");
-
+                "Price: ₹" + book[3];
         }
 
+        // Bill Calculator
+        function calculateBill() {
+            let price = Number(document.getElementById("book").value);
+            let qty = Number(document.getElementById("quantity").value);
+            let delivery = document.getElementById("delivery").checked;
 
-        // Dynamic Price Calculation
-
-        function calculateBookTotal() {
-
-            let price =
-                Number(document.getElementById("bookSelect").value) || 0;
-
-            let qtyInput = document.getElementById("bookQty");
-
-            let qty = Number(qtyInput.value);
-
-            if (!Number.isInteger(qty) || qty < 1) {
-                qty = 0;
+            if (price === 0 || !Number.isInteger(qty) || qty < 1) {
+                document.getElementById("total").innerText =
+                    "Please select a book and valid quantity.";
+                return;
             }
 
-            let shipping =
-                document.getElementById("expressShipping").checked
-                ? 50
-                : 0;
+            let total = price * qty;
 
-            let total = (price * qty) + (price > 0 && qty > 0 ? shipping : 0);
+            if (delivery) {
+                total += 50;
+            }
 
-            document.getElementById("bookTotal").innerText =
-                total.toLocaleString("en-IN");
-
+            document.getElementById("total").innerText =
+                "Total Amount: ₹" + total;
         }
 
-
-        // Order Form Validation
-
-        document.getElementById("orderForm").addEventListener("submit", function (event) {
-
+        // Order Form
+        function placeOrder(event) {
             event.preventDefault();
 
-            let name =
-                document.getElementById("custName").value.trim();
+            let name = document.getElementById("name").value.trim();
+            let address = document.getElementById("address").value.trim();
 
-            let email =
-                document.getElementById("custEmail").value.trim();
-
-            let mobile =
-                document.getElementById("custMobile").value.trim();
-
-            let pincode =
-                document.getElementById("custPincode").value.trim();
-
-            let address =
-                document.getElementById("custAddress").value.trim();
-
-            let status =
-                document.getElementById("orderStatus");
-
-
-            function showError(message) {
-
-                status.className = "error";
-                status.innerText = message;
-
-            }
-
-
-            if (name.length < 2) {
-
-                showError("Please enter your full name.");
+            if (name.length < 2 || address.length < 10) {
+                document.getElementById("message").innerText =
+                    "Please enter valid details.";
                 return;
-
             }
 
+            document.getElementById("message").innerText =
+                "Thank You " + name + "! Your order request has been received.";
 
-            let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-            if (!emailPattern.test(email)) {
-
-                showError("Please enter a valid email address.");
-                return;
-
-            }
-
-
-            if (!/^[0-9]{10}$/.test(mobile)) {
-
-                showError("Mobile number must contain exactly 10 digits.");
-                return;
-
-            }
-
-
-            if (!/^[0-9]{6}$/.test(pincode)) {
-
-                showError("Pincode must contain exactly 6 numeric digits.");
-                return;
-
-            }
-
-
-            if (address.length < 10) {
-
-                showError("Please enter a complete address (minimum 10 characters).");
-                return;
-
-            }
-
-
-            status.className = "success";
-            status.innerText = "Order Registered Successfully! Thank you for choosing ABC Online Book Store.";
-
-            this.reset();
-
-            calculateBookTotal();
-
-        });
-
+            event.target.reset();
+        }
     </script>
 
 </body>
